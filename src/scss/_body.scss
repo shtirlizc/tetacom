@@ -38,3 +38,21 @@ ul {
 a {
   text-decoration: none;
 }
+
+.is-mobile {
+  @include tablet {
+    display: none;
+  }
+}
+
+.is-touch {
+  @include desktop {
+    display: none;
+  }
+}
+
+.is-desktop {
+  @include touch {
+    display: none;
+  }
+}

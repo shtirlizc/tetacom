@@ -1,14 +1,16 @@
 export function mobileMenu() {
-  const [toggleBtn] = document.getElementsByClassName("_header__toggle-btn");
-  const [bg] = document.getElementsByClassName("_header__bg");
-  const [nav] = document.getElementsByClassName("_nav");
-  const [body] = document.getElementsByTagName("body");
+  const toggleBtn = document.querySelector("._header__menu-toggle");
+  const bg = document.querySelector("._header__nav-bg");
+  const nav = document.querySelector("._header__nav");
+  const header = document.querySelector("._header");
+  const body = document.querySelector("body");
 
   const openMenu = (bg, nav, body) => {
     bg.classList.add("active");
     setTimeout(() => {
       bg.classList.add("visible");
       nav.classList.add("active");
+      header.classList.add("active");
       body.classList.add("modal");
     }, 50);
   };
@@ -17,6 +19,11 @@ export function mobileMenu() {
     bg.classList.remove("visible");
     nav.classList.remove("active");
     body.classList.remove("modal");
+
+    if (!window.pageYOffset) {
+      header.classList.remove("active");
+    }
+
     setTimeout(() => {
       bg.classList.remove("active");
     }, 250);

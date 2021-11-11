@@ -1,0 +1,136 @@
+._header {
+  padding: 16px calc(var(--gap) / 2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: var(--header);
+  transition: height var(--delay) ease-in-out, background-color var(--delay) ease-in-out;
+
+  @include desktop {
+    padding: 24px 100px;
+    gap: 80px;
+  }
+
+  &.active {
+    background-color: var(--bg-color);
+  }
+
+  &__logo {
+    font-size: 0;
+  }
+
+  &__grow {
+    flex-grow: 1;
+  }
+
+  &__nav-bg {
+    display: none;
+
+    @include touch {
+      display: none;
+      position: fixed;
+      width: 100%;
+      height: calc(100vh - var(--header));
+      top: var(--header);
+      left: 0;
+      z-index: 9;
+      transition: background-color calc(var(--delay) * 2) ease-in-out;
+    }
+
+    &.active {
+      @include touch {
+        display: block;
+      }
+    }
+
+    &.visible {
+      @include touch {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+
+  &__nav {
+    @include mobile {
+      position: fixed;
+      top: var(--header);
+      right: -100%;
+      height: calc(100vh - var(--header));
+      background-color: var(--bg-color);
+      padding: 20px 0;
+      z-index: 10;
+      transition: right calc(var(--delay) * 2) ease-in-out;
+    }
+
+    &.active {
+      right: 0;
+    }
+  }
+
+  &__auth {
+    @include touch {
+      display: none;
+    }
+  }
+
+  &__lang {
+    color: var(--white-color);
+  }
+
+  &__menu {
+    font-size: 0;
+
+    @include desktop {
+      display: none;
+    }
+
+    &-toggle {
+      @include clean;
+
+      position: relative;
+      height: 20px;
+      width: 36px;
+      font-size: 0;
+
+      &:before,
+      &:after {
+        background-color: var(--white-color);
+        backface-visibility: hidden;
+        content: "";
+        height: 2px;
+        left: 0;
+        transition: calc(var(--delay) * 3) ease-in-out;
+        width: 36px;
+      }
+
+      &:before {
+        box-shadow: #fff 0 9px 0 0;
+        position: absolute;
+        top: 0;
+      }
+
+      &:after {
+        position: absolute;
+        top: calc(100% - 2px);
+      }
+
+      &.active {
+        &:before {
+          box-shadow: transparent 0 0 0 0;
+          top: 50%;
+          transform: rotate(225deg);
+        }
+
+        &:after {
+          top: 50%;
+          transform: rotate(315deg);
+        }
+      }
+    }
+  }
+}

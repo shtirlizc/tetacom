@@ -1,14 +1,17 @@
 <header class="_header">
-  <a href="#" class="_header__logo"> @include('logo.html') </a>
+  <a href="#top" class="_header__logo">@include('logo.html')</a>
 
   <div class="_header__grow"></div>
 
+  <div class="_header__nav-bg"></div>
+
   <nav class="_header__nav">
     <ul class="_nav">
-      <li><a href="#">About us</a></li>
-      <li><a href="#">Products</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Contacts</a></li>
+      <li class="_nav__item"><a href="#services">Наши услуги</a></li>
+      <li class="_nav__item"><a href="#about">О нас</a></li>
+      <li class="_nav__item"><a href="#products">Наши продукты</a></li>
+      <li class="_nav__item"><a href="#contacts">Контакты</a></li>
+      <li class="_nav__item"><a href="#" class="_btn is-touch">Вход в сервисы</a></li>
     </ul>
   </nav>
 
@@ -17,4 +20,8 @@
   </div>
 
   <div class="_header__lang">EN</div>
+
+  <div class="_header__menu">
+    <button type="button" class="_header__menu-toggle">MENU</button>
+  </div>
 </header>

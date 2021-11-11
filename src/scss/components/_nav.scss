@@ -1,0 +1,22 @@
+._nav {
+  list-style: none;
+
+  &__item {
+    font-size: 0;
+
+    a {
+      display: inline-block;
+      font-size: 14px;
+      color: var(--white-color);
+      transition: color var(--delay) ease-in-out;
+
+      @include mobile {
+        padding: 10px 40px;
+      }
+
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+  }
+}
