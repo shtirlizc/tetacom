@@ -9,11 +9,15 @@
   align-items: center;
   gap: 20px;
   height: var(--header);
-  transition: height var(--delay) ease-in-out, background-color var(--delay) ease-in-out;
+  transition: all var(--delay) ease-in-out;
 
   @include desktop {
-    padding: 24px 100px;
+    padding: 24px calc(var(--gap) / 2);
     gap: 80px;
+  }
+
+  @include fullhd {
+    padding: 24px 100px;
   }
 
   &.active {
