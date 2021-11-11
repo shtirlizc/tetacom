@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "imask": "^6.0.7",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "swiper": "^7.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",

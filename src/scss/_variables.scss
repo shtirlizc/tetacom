@@ -9,5 +9,8 @@ $container-desktop: 986px;
 $container-tablet: 720px;
 
 :root {
+  --font-primary: "YandexSans", sans-serif;
+  --font-secondary: "OpenSans", sans-serif;
+
   --delay: 0.2s;
 }
