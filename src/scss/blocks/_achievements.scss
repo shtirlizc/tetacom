@@ -1,0 +1,33 @@
+._achievements {
+  &__title {
+  }
+
+  &__description {
+    font-size: 16px;
+    line-height: 28px;
+    margin: 28px 0 0;
+    padding-right: 20%;
+  }
+
+  &__list {
+    list-style: none;
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap);
+  }
+
+  &__item {
+    &-value {
+      font-weight: 700;
+      font-size: 88px;
+      line-height: 110px;
+    }
+
+    &-desc {
+      font-size: 14px;
+      line-height: 22px;
+      margin-top: -80px;
+    }
+  }
+}

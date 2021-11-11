@@ -1,0 +1,53 @@
+._block-about {
+  background-color: #f7f7f7;
+  padding: 120px 0;
+
+  &__title {
+  }
+
+  &__description {
+    font-size: 16px;
+    line-height: 28px;
+    margin: 36px 0 0;
+  }
+
+  &__partners {
+    list-style: none;
+    margin-top: 120px;
+    display: flex;
+    flex-wrap: wrap;
+
+    &-item {
+      position: relative;
+      flex-grow: 1;
+      flex-basis: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:not(:last-child) {
+        &::after {
+          content: "";
+          position: absolute;
+          width: 1px;
+          height: calc(100% + 10px);
+          top: -5px;
+          right: 0;
+          background-color: var(--grey-80);
+        }
+      }
+
+      img {
+        filter: grayscale(100%);
+      }
+    }
+  }
+
+  &__achievements {
+    margin-top: 120px;
+  }
+
+  &__team {
+    margin-top: 120px;
+  }
+}

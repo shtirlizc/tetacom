@@ -1,0 +1,39 @@
+._team {
+  &__title {
+  }
+
+  &__people {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap);
+    margin-top: 36px;
+  }
+
+  &__person {
+    background-color: var(--white-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+
+    &-image {
+      img {
+        max-width: 100%;
+      }
+    }
+
+    &-name {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 22px;
+      margin-top: 28px;
+    }
+
+    &-skills {
+      font-size: 14px;
+      line-height: 22px;
+      margin: 12px 0 0;
+    }
+  }
+}
