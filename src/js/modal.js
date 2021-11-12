@@ -1,4 +1,4 @@
-const [body] = document.getElementsByTagName("body");
+const [body] = document.getElementsByTagName("html");
 
 export const Modal = {
   init() {

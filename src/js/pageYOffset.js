@@ -3,17 +3,19 @@ export const PageYOffset = {
   header: document.querySelector("._header"),
 
   init() {
-    if (this.value) {
-      this.add();
-    }
-
-    document.addEventListener("scroll", () => {
-      if (window.pageYOffset) {
+    if (this.header) {
+      if (this.value) {
         this.add();
-      } else {
-        this.remove();
       }
-    });
+
+      document.addEventListener("scroll", () => {
+        if (window.pageYOffset) {
+          this.add();
+        } else {
+          this.remove();
+        }
+      });
+    }
   },
 
   add() {

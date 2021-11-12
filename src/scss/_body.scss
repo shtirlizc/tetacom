@@ -11,6 +11,15 @@
   }
 }
 
+html {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+
+  &.modal {
+    overflow: hidden;
+  }
+}
+
 html,
 body {
   margin: 0;
@@ -19,12 +28,6 @@ body {
   -webkit-font-smoothing: antialiased;
   font-size: 20px;
   color: var(--grey-50);
-}
-
-body {
-  &.modal {
-    overflow: hidden;
-  }
 }
 
 h1,
