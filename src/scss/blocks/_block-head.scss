@@ -46,6 +46,7 @@
         max-width: 80%;
         max-height: calc(100% - 20px);
         object-fit: contain;
+        transition: transform var(--delay) ease-in-out;
 
         @include desktop {
           max-width: 50%;
@@ -53,6 +54,21 @@
 
         @include widescreen {
           max-width: calc(7 * 100% / 12);
+        }
+
+        @include fromto(1500px, 1700px) {
+          transform: translate(10%);
+          max-width: 60%;
+        }
+
+        @include fromto(1500px, 2000px) {
+          transform: translate(20%);
+          max-width: 80%;
+        }
+
+        @media (min-width: 2001px) {
+          transform: translate(35%);
+          max-width: 95%;
         }
       }
     }
