@@ -1,6 +1,6 @@
 ._block-about {
   background-color: #f7f7f7;
-  padding: 120px 0;
+  padding: 122px 0;
 
   &__title {
   }
@@ -8,7 +8,7 @@
   &__description {
     font-size: 16px;
     line-height: 28px;
-    margin: 36px 0 0;
+    margin: 39px 0 0;
   }
 
   &__partners {
@@ -16,14 +16,16 @@
     margin-top: 120px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 
     &-item {
       position: relative;
-      flex-grow: 1;
       flex-basis: 20%;
       display: flex;
+      min-height: 100px;
       justify-content: center;
       align-items: center;
+      margin-bottom: 50px;
 
       &:not(:last-child) {
         &::after {
@@ -37,6 +39,12 @@
         }
       }
 
+      &:nth-child(5n) {
+        &::after {
+          display: none;
+        }
+      }
+
       img {
         filter: grayscale(100%);
       }
@@ -44,10 +52,10 @@
   }
 
   &__achievements {
-    margin-top: 120px;
+    margin-top: 79px;
   }
 
   &__team {
-    margin-top: 120px;
+    margin-top: 119px;
   }
 }

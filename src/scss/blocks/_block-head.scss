@@ -2,8 +2,8 @@
   position: relative;
   background-color: var(--bg-color);
   background-image: url("../img/bg.svg"), url("../img/subtract.svg");
-  background-size: 60px 60px, auto calc(100% - 60px);
-  background-position: 30px 45px, 100% 0;
+  background-size: 60px 62px, auto calc(100% - 63px);
+  background-position: 29px 48px, 100% 0;
   background-repeat: repeat, no-repeat;
   padding-top: var(--header);
   min-height: 100vh;
@@ -46,6 +46,12 @@
     }
   }
 
+  &__wrap {
+    @include desktop {
+      min-height: calc(100vh - var(--header));
+    }
+  }
+
   &__body {
     transform: translateZ(0);
     height: 100%;
@@ -54,11 +60,16 @@
       display: grid;
       grid-template-columns: 5fr 7fr;
       gap: var(--gap);
-      padding: 100px 0 65px;
+      padding: 130px 0 65px;
+      min-height: calc(100vh - var(--header));
     }
   }
 
   &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
   }
 
   &__title {
@@ -82,7 +93,7 @@
 
     display: flex;
     align-items: flex-end;
-    margin-top: 112px;
+    margin-top: 111px;
 
     &-item {
       &:not(:last-child) {

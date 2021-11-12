@@ -3,20 +3,27 @@
 
   @include desktop {
     display: flex;
+    margin-top: 2px;
   }
 
   &__item {
     font-size: 0;
 
+    &:not(:first-child) {
+      @include desktop {
+        margin-left: 78px;
+      }
+    }
+
     a {
       display: inline-block;
       font-size: 14px;
       color: var(--white-color);
-      padding: 10px 36px;
+      padding: 10px 0;
       white-space: nowrap;
       transition: color var(--delay) ease-in-out;
 
-      @include mobile {
+      @include touch {
         padding: 10px 40px;
       }
 
