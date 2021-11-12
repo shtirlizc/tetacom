@@ -1,6 +1,5 @@
 ._input {
   --padding: 12px;
-  --icon-width: 42px;
 
   position: relative;
 
@@ -12,10 +11,10 @@
     border-radius: 2px;
     height: 40px;
     width: 100%;
-    border: 1px solid #cccccc;
+    border: 1px solid var(--grey-30);
     padding: 1px var(--padding) 0;
-    font-family: var(--font);
-    color: #a3a3a3;
+    font-family: var(--font-primary);
+    color: var(--grey-50);
     font-size: 14px;
     display: flex;
     align-items: center;
@@ -29,7 +28,7 @@
     }
 
     &:focus {
-      border-color: var(--primary);
+      border-color: var(--primary-color);
 
       + label {
         transform: translate(10px);
@@ -53,8 +52,7 @@
       transform: translate(10px);
       opacity: 0;
       pointer-events: none;
-      transition: opacity var(--delay) ease-in-out,
-        transform var(--delay) ease-in-out;
+      transition: opacity var(--delay) ease-in-out, transform var(--delay) ease-in-out;
     }
   }
 
@@ -66,16 +64,6 @@
     + label {
       padding: var(--padding);
       align-items: flex-start;
-    }
-  }
-
-  &--icon {
-    input {
-      padding-right: calc(var(--padding) + 40px);
-
-      + label {
-        padding-right: calc(var(--padding) + 40px);
-      }
     }
   }
 }

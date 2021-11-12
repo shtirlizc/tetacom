@@ -1,15 +1,19 @@
-// import { textField } from "./textField";
+import { textField } from "./textField";
 // import { phoneMask } from "./phoneMask";
 import { mobileMenu } from "./mobileMenu";
+import { gumshoe } from "./gumshoe";
 import { Slider } from "./slider";
 import { PageYOffset } from "./pageYOffset";
-import { gumshoe } from "./gumshoe";
+import { Modal } from "./modal";
+import { Form } from "./modal";
 
 window.addEventListener("load", () => {
   mobileMenu();
-  // textField();
+  textField();
   // phoneMask();
   gumshoe();
   Slider.init();
   PageYOffset.init();
+  Modal.init();
+  Form.init();
 });
