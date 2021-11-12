@@ -13,6 +13,8 @@ export function mobileMenu() {
       header.classList.add("active");
       body.classList.add("modal");
     }, 50);
+
+    sessionStorage.setItem("side_menu", true);
   };
 
   const closeMenu = (bg, nav, body) => {
@@ -27,6 +29,8 @@ export function mobileMenu() {
     setTimeout(() => {
       bg.classList.remove("active");
     }, 250);
+
+    sessionStorage.setItem("side_menu", false);
   };
 
   if (toggleBtn) {

@@ -12,7 +12,9 @@ export const PageYOffset = {
         if (window.pageYOffset) {
           this.add();
         } else {
-          this.remove();
+          if (sessionStorage.getItem("side_menu") !== "true") {
+            this.remove();
+          }
         }
       });
     }
