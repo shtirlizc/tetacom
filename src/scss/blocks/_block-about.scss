@@ -2,6 +2,10 @@
   background-color: #f7f7f7;
   padding: 122px 0;
 
+  @include touch {
+    padding: 40px 0;
+  }
+
   &__title {
   }
 
@@ -18,14 +22,31 @@
     flex-wrap: wrap;
     justify-content: center;
 
+    @include touch {
+      margin-top: 60px;
+    }
+
     &-item {
       position: relative;
-      flex-basis: 20%;
       display: flex;
       min-height: 100px;
       justify-content: center;
       align-items: center;
-      margin-bottom: 50px;
+      flex-basis: 100%;
+      padding-bottom: 25px;
+      margin-bottom: 25px;
+
+      @include tablet-only {
+        flex-basis: 33%;
+        padding: 0;
+        margin-bottom: 30px;
+      }
+
+      @include desktop {
+        flex-basis: 20%;
+        padding: 0;
+        margin-bottom: 50px;
+      }
 
       &:not(:last-child) {
         &::after {
@@ -36,12 +57,31 @@
           top: -5px;
           right: 0;
           background-color: var(--grey-80);
+
+          @include mobile {
+            width: 200px;
+            height: 1px;
+            right: 50%;
+            top: auto;
+            bottom: 0;
+            transform: translate(50%);
+          }
+        }
+      }
+
+      &:nth-child(3n) {
+        &::after {
+          @include tablet-only {
+            display: none;
+          }
         }
       }
 
       &:nth-child(5n) {
         &::after {
-          display: none;
+          @include desktop {
+            display: none;
+          }
         }
       }
 
@@ -53,9 +93,17 @@
 
   &__achievements {
     margin-top: 79px;
+
+    @include touch {
+      margin-top: 40px;
+    }
   }
 
   &__team {
     margin-top: 119px;
+
+    @include touch {
+      margin-top: 60px;
+    }
   }
 }

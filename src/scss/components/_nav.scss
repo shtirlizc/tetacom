@@ -1,6 +1,10 @@
 ._nav {
   list-style: none;
 
+  @include touch {
+    padding: 0 10px;
+  }
+
   @include desktop {
     display: flex;
     margin-top: 2px;
@@ -11,25 +15,35 @@
 
     &:not(:first-child) {
       @include desktop {
+        margin-left: 50px;
+      }
+
+      @include widescreen {
         margin-left: 78px;
       }
     }
 
-    a {
-      display: inline-block;
-      font-size: 14px;
-      color: var(--white-color);
-      padding: 10px 0;
-      white-space: nowrap;
-      transition: color var(--delay) ease-in-out;
-
+    &:last-child {
       @include touch {
-        padding: 10px 40px;
+        margin-top: 20px;
       }
+    }
+  }
 
-      &:hover {
-        color: var(--primary-color);
-      }
+  &__link {
+    display: inline-block;
+    font-size: 14px;
+    color: var(--white-color);
+    padding: 10px 0;
+    white-space: nowrap;
+    transition: color var(--delay) ease-in-out;
+
+    @include touch {
+      padding: 10px 40px;
+    }
+
+    &:hover {
+      color: var(--primary-color);
     }
   }
 }

@@ -1,6 +1,10 @@
 ._block-products {
   padding: 126px 0;
 
+  @include touch {
+    padding: 40px 0;
+  }
+
   &__title {
   }
 
@@ -12,8 +16,11 @@
     background-color: #f7f7f7;
     border-radius: 8px;
     overflow: hidden;
-    display: grid;
-    grid-template-columns: 7fr 5fr;
+
+    @include tablet {
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+    }
 
     &:not(:last-child) {
       margin-bottom: 24px;
@@ -21,6 +28,10 @@
 
     &-content {
       padding: 40px;
+
+      @include touch {
+        padding: 20px;
+      }
     }
 
     &-title {
@@ -32,6 +43,10 @@
     &-features {
       padding-left: 24px;
       margin-top: 51px;
+
+      @include touch {
+        margin-top: 20px;
+      }
     }
 
     &-feature {

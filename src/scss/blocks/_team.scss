@@ -4,9 +4,16 @@
 
   &__people {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
     gap: var(--gap);
     margin-top: 36px;
+
+    @include tablet-only {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include desktop {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 
   &__person {
@@ -16,6 +23,11 @@
     align-items: center;
     text-align: center;
     padding: 40px;
+
+    @include mobile {
+      max-width: 360px;
+      margin: auto;
+    }
 
     &-image {
       font-size: 0;

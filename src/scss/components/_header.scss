@@ -13,6 +13,10 @@
 
   @include desktop {
     padding: 24px calc(var(--gap) / 2);
+    gap: 60px;
+  }
+
+  @include widescreen {
     gap: 80px;
   }
 
@@ -74,7 +78,7 @@
   }
 
   &__nav {
-    @include mobile {
+    @include touch {
       position: fixed;
       top: var(--header);
       right: -100%;
@@ -154,8 +158,8 @@
       @include clean;
 
       position: relative;
-      height: 20px;
-      width: 36px;
+      height: 16px;
+      width: 30px;
       font-size: 0;
 
       &:before,
@@ -166,11 +170,11 @@
         height: 2px;
         left: 0;
         transition: calc(var(--delay) * 3) ease-in-out;
-        width: 36px;
+        width: 30px;
       }
 
       &:before {
-        box-shadow: #fff 0 9px 0 0;
+        box-shadow: #fff 0 7px 0 0;
         position: absolute;
         top: 0;
       }

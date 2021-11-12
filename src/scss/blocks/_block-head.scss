@@ -1,13 +1,20 @@
 ._block-head {
   position: relative;
   background-color: var(--bg-color);
-  background-image: url("../img/bg.svg"), url("../img/subtract.svg");
-  background-size: 60px 62px, auto calc(100% - 63px);
-  background-position: 29px 48px, 100% 0;
-  background-repeat: repeat, no-repeat;
+  background-image: url("../img/bg.svg");
+  background-size: 60px 62px;
+  background-position: 29px 48px;
+  background-repeat: repeat;
   padding-top: var(--header);
   min-height: 100vh;
   color: var(--white-color);
+
+  @include tablet {
+    background-image: url("../img/subtract.svg"), url("../img/bg.svg");
+    background-size: auto calc(100% - 63px), 60px 62px;
+    background-position: 100% 0, 29px 48px;
+    background-repeat: no-repeat, repeat;
+  }
 
   &__slider {
     position: absolute;
@@ -17,8 +24,8 @@
     transform: translateZ(0);
     transition: opacity var(--delay) ease-in-out;
 
-    @include mobile {
-      opacity: 0.5;
+    @include touch {
+      opacity: 0.6;
     }
 
     ._container {
@@ -38,8 +45,13 @@
       img {
         max-width: 80%;
         max-height: calc(100% - 20px);
+        object-fit: contain;
 
         @include desktop {
+          max-width: 50%;
+        }
+
+        @include widescreen {
           max-width: calc(7 * 100% / 12);
         }
       }
@@ -55,13 +67,20 @@
   &__body {
     transform: translateZ(0);
     height: 100%;
+    padding: 30px 0;
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - var(--header));
 
     @include desktop {
       display: grid;
-      grid-template-columns: 5fr 7fr;
+      grid-template-columns: 1fr 1fr;
       gap: var(--gap);
       padding: 130px 0 65px;
-      min-height: calc(100vh - var(--header));
+    }
+
+    @include widescreen {
+      grid-template-columns: 5fr 7fr;
     }
   }
 
@@ -74,8 +93,11 @@
 
   &__title {
     font-weight: 500;
-    font-size: 44px;
-    line-height: 55px;
+
+    @include tablet {
+      font-size: 44px;
+      line-height: 55px;
+    }
   }
 
   &__description {
@@ -85,7 +107,11 @@
   }
 
   &__callback {
-    margin-top: 58px;
+    margin-top: 40px;
+
+    @include desktop {
+      margin-top: 58px;
+    }
   }
 
   &__pagination {
@@ -94,6 +120,10 @@
     display: flex;
     align-items: flex-end;
     margin-top: 111px;
+
+    @include touch {
+      display: none;
+    }
 
     &-item {
       &:not(:last-child) {

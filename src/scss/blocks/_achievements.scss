@@ -7,17 +7,39 @@
     line-height: 28px;
     margin: 29px 0 0;
     padding-right: 20%;
+
+    @include mobile {
+      padding: 0;
+    }
   }
 
   &__list {
     list-style: none;
-    margin-top: 70px;
+    margin-top: 30px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
     gap: var(--gap);
+
+    @include tablet-only {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include desktop {
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 70px;
+    }
   }
 
   &__item {
+    @include mobile {
+      text-align: center;
+    }
+
+    &:not(:last-child) {
+      @include mobile {
+        margin-bottom: 20px;
+      }
+    }
+
     &-value {
       margin: 0;
       font-weight: 700;

@@ -1,6 +1,10 @@
 ._block-services {
   padding: 120px 0;
 
+  @include touch {
+    padding: 40px 0;
+  }
+
   &__label {
     margin: 0;
     font-family: var(--font-secondary);
@@ -24,19 +28,43 @@
     line-height: 28px;
     margin-top: 0;
 
+    @include mobile {
+      text-align: center;
+    }
+
     ~ ._block-services__subtitle {
       margin-top: 100px;
+
+      @include touch {
+        margin-top: 60px;
+      }
     }
   }
 
   &__items {
     list-style: none;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
     margin-top: 38px;
+
+    @include tablet {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap);
+    }
   }
 
   &__item {
+    &:not(:last-child) {
+      @include mobile {
+        margin-bottom: 32px;
+      }
+    }
+
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     &-icon {
       display: flex;
       justify-content: center;
@@ -51,7 +79,17 @@
       font-size: 16px;
       line-height: 28px;
       margin: 32px 0 0;
-      padding-right: 30%;
+
+      @include mobile {
+        padding: 0;
+        text-align: center;
+        margin-top: 16px;
+        max-width: 260px;
+      }
+
+      @include desktop {
+        padding-right: 30%;
+      }
     }
   }
 }
