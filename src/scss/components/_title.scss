@@ -1,4 +1,8 @@
 ._title {
   font-weight: 500;
   font-size: 42px;
+
+  @include mobile {
+    text-align: center;
+  }
 }
