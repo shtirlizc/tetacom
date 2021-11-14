@@ -17,9 +17,7 @@ const ftp = require("vinyl-ftp");
 
 const fonts = () => {
   src("./src/fonts/**/*.ttf").pipe(ttf2woff()).pipe(dest("./app/fonts/"));
-  return src("./src/fonts/**/*.ttf")
-    .pipe(ttf2woff2())
-    .pipe(dest("./app/fonts/"));
+  return src("./src/fonts/**/*.ttf").pipe(ttf2woff2()).pipe(dest("./app/fonts/"));
 };
 
 const styles = () => {
@@ -28,22 +26,22 @@ const styles = () => {
     .pipe(
       sass({
         outputStyle: "expanded",
-      }).on("error", notify.onError())
+      }).on("error", notify.onError()),
     )
     .pipe(
       rename({
         suffix: ".min",
-      })
+      }),
     )
     .pipe(
       autoprefixer({
         cascade: false,
-      })
+      }),
     )
     .pipe(
       cleanCSS({
         level: 2,
-      })
+      }),
     )
     .pipe(sourcemaps.write("."))
     .pipe(dest("./app/css/"))
@@ -56,7 +54,7 @@ const htmlInclude = () => {
       fileinclude({
         prefix: "@",
         basepath: "@file",
-      })
+      }),
     )
     .pipe(dest("./app"))
     .pipe(browserSync.stream());
@@ -68,6 +66,7 @@ const imgToApp = () => {
     "./src/img/**/*.png",
     "./src/img/**/*.jpeg",
     "./src/img/**/*.svg",
+    "./src/img/**/*.ico",
   ]).pipe(dest("./app/img"));
 };
 
@@ -101,7 +100,7 @@ const scripts = () => {
             },
           ],
         },
-      })
+      }),
     )
     .on("error", function (err) {
       console.error("WEBPACK ERROR", err);
@@ -128,6 +127,7 @@ const watchFiles = () => {
   watch("./src/img/**/*.png", imgToApp);
   watch("./src/img/**/*.jpeg", imgToApp);
   watch("./src/img/**/*.svg", imgToApp);
+  watch("./src/img/**/*.ico", imgToApp);
   watch("./src/resources/**", resources);
   watch("./src/fonts/**/*.ttf", fonts);
   watch("./src/js/**/*.js", scripts);
@@ -141,7 +141,7 @@ exports.default = series(
   clean,
   parallel(htmlInclude, scripts, fonts, resources, imgToApp),
   styles,
-  watchFiles
+  watchFiles,
 );
 
 const tinypng = () => {
@@ -150,6 +150,7 @@ const tinypng = () => {
     "./src/img/**/*.png",
     "./src/img/**/*.jpeg",
     "./src/img/**/*.svg",
+    "./src/img/**/*.ico",
   ]).pipe(dest("./app/img"));
 };
 
@@ -158,22 +159,22 @@ const stylesBuild = () => {
     .pipe(
       sass({
         outputStyle: "expanded",
-      }).on("error", notify.onError())
+      }).on("error", notify.onError()),
     )
     .pipe(
       rename({
         suffix: ".min",
-      })
+      }),
     )
     .pipe(
       autoprefixer({
         cascade: false,
-      })
+      }),
     )
     .pipe(
       cleanCSS({
         level: 2,
-      })
+      }),
     )
     .pipe(dest("./app/css/"));
 };
@@ -200,7 +201,7 @@ const scriptsBuild = () => {
             },
           ],
         },
-      })
+      }),
     )
     .on("error", function (err) {
       console.error("WEBPACK ERROR", err);
@@ -214,7 +215,7 @@ exports.build = series(
   clean,
   parallel(htmlInclude, scriptsBuild, fonts, resources, imgToApp),
   stylesBuild,
-  tinypng
+  tinypng,
 );
 
 // deploy
