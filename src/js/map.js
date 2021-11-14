@@ -29,7 +29,7 @@ export function map() {
             // Необходимо указать данный тип макета.
             iconLayout: "default#image",
             // Своё изображение иконки метки.
-            iconImageHref: "../img/placemark.svg",
+            iconImageHref: "img/placemark.svg",
             // Размеры метки.
             iconImageSize: [50, 60],
             // Смещение левого верхнего угла иконки относительно
