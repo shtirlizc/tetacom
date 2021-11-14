@@ -44,6 +44,12 @@
   &--light-bg {
     &:hover {
       color: var(--grey-50);
+
+      svg {
+        path {
+          fill: var(--grey-50);
+        }
+      }
     }
   }
 }
