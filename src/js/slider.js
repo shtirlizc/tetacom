@@ -1,18 +1,21 @@
-import Swiper, { Autoplay, EffectFade } from "swiper";
+import Swiper, { Autoplay } from "swiper";
 
 export const Slider = {
   buttons: document.querySelectorAll("._block-head__pagination-item button"),
 
   init() {
     this.slider = new Swiper(".js-swiper-main", {
-      modules: [Autoplay, EffectFade],
-      speed: 1000,
+      modules: [Autoplay],
+      speed: 500,
+      autoHeight: true,
       autoplay: {
         delay: 7000,
       },
-      effect: "fade",
-      fadeEffect: {
-        crossFade: true,
+      breakpoints: {
+        1081: {
+          speed: 1000,
+          autoHeight: false,
+        },
       },
     });
 

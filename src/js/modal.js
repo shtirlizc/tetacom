@@ -41,12 +41,12 @@ export const Modal = {
     setTimeout(() => {
       currentModal.classList.add("open");
     }, 100);
-    body.classList.add("modal");
+    body.classList.add("desktop-modal");
   },
 
   close(currentModal) {
     currentModal.classList.remove("open");
-    body.classList.remove("modal");
+    body.classList.remove("desktop-modal");
     setTimeout(() => {
       currentModal.style.display = "none";
     }, 500);
@@ -60,7 +60,7 @@ export const Modal = {
         modal.style.display = "none";
       }, 500);
     });
-    body.classList.remove("modal");
+    body.classList.remove("desktop-modal");
   },
 
   onSubmit() {
