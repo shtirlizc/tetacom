@@ -66,5 +66,27 @@
         max-height: 100%;
       }
     }
+
+    &-sponsor {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 72px;
+      color: var(--grey-40);
+
+      img {
+        flex: 0 0 155px;
+      }
+
+      span {
+        font-size: 14px;
+        line-height: 17px;
+        margin-left: 28px;
+        transition: color var(--delay) ease-in-out;
+      }
+
+      &:hover {
+        color: var(--grey-50);
+      }
+    }
   }
 }
