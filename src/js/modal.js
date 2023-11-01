@@ -80,16 +80,18 @@ export const Form = {
   form: document.querySelector(".js-form"),
 
   init() {
-    this.form.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-
-      setTimeout(() => {
-        document.getElementById("name").value = "";
-        document.getElementById("phone").value = "";
-        document.getElementById("message").value = "";
-      }, 500);
-
-      Modal.findModal("modal-success");
-    });
+    if (this.form) {
+      this.form.addEventListener("submit", (evt) => {
+        evt.preventDefault();
+  
+        setTimeout(() => {
+          document.getElementById("name").value = "";
+          document.getElementById("phone").value = "";
+          document.getElementById("message").value = "";
+        }, 500);
+  
+        Modal.findModal("modal-success");
+      });
+    }
   },
 };
