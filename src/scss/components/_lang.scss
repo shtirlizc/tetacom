@@ -9,8 +9,12 @@
   background-repeat: no-repeat;
   transition: background-color var(--delay) ease-in-out;
 
-  &:hover {
+  &[href]:hover {
     background-color: #373948;
+  }
+
+  &:not([href]) {
+    cursor: default;
   }
 
   &--en {
