@@ -117,11 +117,11 @@
 
     &-links {
       display: flex;
-      gap: 8px;
+      gap: 12px;
       justify-content: space-between;
       align-items: center;
 
-      @include mobile {
+      @include touch {
         flex-direction: column;
         text-align: center;
         gap: 20px;
@@ -133,6 +133,9 @@
       font-size: 14px;
       color: var(--white-color);
       text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     &-link {
@@ -140,6 +143,9 @@
       color: var(--primary-color);
       text-decoration: none;
       font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       &::after {
         content: '';
