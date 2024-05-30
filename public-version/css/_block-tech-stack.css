@@ -1,0 +1,13 @@
+._block-tech-stack {
+  padding: 80px 0;
+}
+
+@media (max-width: 1080px) {
+  ._block-tech-stack {
+    padding: 40px 0;
+  }
+}
+
+._block-tech-stack__body {
+  margin-top: 60px;
+}
