@@ -15,11 +15,11 @@
 
     &:not(:first-child) {
       @include desktop {
-        margin-left: 50px;
+        margin-left: 36px;
       }
 
       @include widescreen {
-        margin-left: 78px;
+        margin-left: 40px;
       }
     }
 

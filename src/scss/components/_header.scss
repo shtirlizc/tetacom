@@ -13,15 +13,12 @@
 
   @include desktop {
     padding: 24px calc(var(--gap) / 2);
-    gap: 60px;
-  }
-
-  @include widescreen {
-    gap: 80px;
+    gap: 20px;
   }
 
   @include fullhd {
     padding: 24px 104px 24px 100px;
+    gap: 60px;
   }
 
   &.active {
@@ -112,7 +109,7 @@
       cursor: pointer;
 
       &::after {
-        content: "";
+        content: '';
         display: block;
         width: 0;
         height: 0;
@@ -133,11 +130,11 @@
       background-size: 16px;
 
       &--en {
-        background-image: url("../img/icons/flag-en.svg");
+        background-image: url('/public/img/icons/flag-en.svg');
       }
 
       &--ru {
-        background-image: url("../img/icons/flag-ru.svg");
+        background-image: url('/public/img/icons/flag-ru.svg');
       }
     }
 
@@ -168,7 +165,7 @@
       &:after {
         background-color: var(--white-color);
         backface-visibility: hidden;
-        content: "";
+        content: '';
         height: 2px;
         left: 0;
         transition: calc(var(--delay) * 3) ease-in-out;

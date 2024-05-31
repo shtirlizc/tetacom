@@ -1,7 +1,7 @@
 ._block-head {
   position: relative;
   background-color: var(--bg-color);
-  background-image: url("../img/bg.svg");
+  background-image: url('/public/img/bg.svg');
   background-size: 60px 62px;
   background-position: 29px 48px;
   background-repeat: repeat;
@@ -10,9 +10,13 @@
 
   @include tablet {
     min-height: 100vh;
-    background-image: url("../img/subtract.svg"), url("../img/bg.svg");
-    background-size: auto calc(100% - 63px), 60px 62px;
-    background-position: 100% 0, 29px 48px;
+    background-image: url('/public/img/subtract.svg'), url('/public/img/bg.svg');
+    background-size:
+      auto calc(100% - 63px),
+      60px 62px;
+    background-position:
+      100% 0,
+      29px 48px;
     background-repeat: no-repeat, repeat;
   }
 
@@ -168,7 +172,7 @@
         transition: all calc(var(--delay) * 2) ease-in-out;
 
         &::after {
-          content: "";
+          content: '';
           position: absolute;
           bottom: 0;
           left: 0;
