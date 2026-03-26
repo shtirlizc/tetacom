@@ -1,0 +1,27 @@
+:root {
+  --font-primary: "YandexSans", sans-serif;
+  --font-secondary: "Open Sans Variable", "Open Sans", sans-serif;
+
+  --primary-color: #ffef59;
+  --bg-color: #262835;
+  --white-color: #ffffff;
+
+  --grey-30: #6b6d7b;
+  --grey-40: #7a7b8b;
+  --grey-50: #292930;
+  --grey-80: #d7d8dd;
+  --grey-90: #3c4044;
+
+  --gap: 20px;
+
+  --delay: 0.2s;
+
+  --header: 58px;
+}
+
+/* desktop */
+@media (width >= 1081px) {
+  :root {
+    --header: 92px;
+  }
+}
