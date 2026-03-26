@@ -1,0 +1,23 @@
+---
+
+---
+
+<div class="_container">
+  <slot />
+</div>
+
+<style>
+  ._container {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 calc(var(--gap) / 2);
+  }
+
+  /* fullhd */
+  @media (width >= 1360px) {
+    ._container {
+      padding: 0;
+    }
+  }
+</style>

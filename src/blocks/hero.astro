@@ -1,0 +1,393 @@
+---
+import Btn from "../components/btn.astro";
+import Container from "../components/container.astro";
+
+interface Props {
+  locale: "ru" | "en";
+}
+
+const { locale } = Astro.props;
+
+const dictionary = {
+  ru: {
+    slides: [
+      {
+        titleLines: ["Облачные сервисы для", "нефтегазовой отрасли"],
+        description:
+          "Облачные решения компании Тетаком для нефтегазовой промышленности позволяют снижать себестоимость добычи природных энергоресурсов",
+        imageAlt: "Нефтяная платформа",
+        image: "slide-1",
+      },
+      {
+        titleLines: ["Сопровождение геолого-технических", "мероприятий"],
+        description:
+          "Тетаком оказывает поддержку при бурении, водоизоляционных работах, гидроразрыве пласта в карбонатных и терригенных породах",
+        imageAlt: "Нефтяная качалка",
+        image: "slide-2",
+      },
+    ],
+    writeUs: "Написать нам",
+  },
+  en: {
+    slides: [
+      {
+        titleLines: ["Cloud services for", "the oil and gas industry"],
+        description:
+          "Tetacom cloud solutions for the oil and gas industry help reduce the cost of production of natural energy resources",
+        imageAlt: "Oil platform",
+        image: "slide-1",
+      },
+      {
+        titleLines: ["Support of geological and", "technical measures"],
+        description:
+          "Tetacom provides support for drilling, watershut, hydraulic fracturing works in carbonates and terrigens",
+        imageAlt: "Oil pumpjack",
+        image: "slide-2",
+      },
+    ],
+    writeUs: "Write us",
+  },
+} as const;
+
+const content = dictionary[locale];
+const bgPattern = `${import.meta.env.BASE_URL}img/bg.svg`;
+const subtractPattern = `${import.meta.env.BASE_URL}img/subtract.svg`;
+---
+
+<section
+  id="hero"
+  class="_hero"
+  style={`--hero-bg: url("${bgPattern}"); --hero-subtract: url("${subtractPattern}");`}
+>
+  <div class="_hero__slider">
+    <div id="hero-slider" class="swiper js-swiper-main">
+      <div class="swiper-wrapper">
+        {
+          content.slides.map((slide, index) => {
+            const image1x = `${import.meta.env.BASE_URL}img/${slide.image}.png`;
+            const image2x = `${import.meta.env.BASE_URL}img/${slide.image}@2x.png`;
+
+            return (
+              <div class="swiper-slide">
+                <Container>
+                  <div class="_hero__slider-content">
+                    <div class="_hero__slider-body">
+                      <h1 class="_hero__title">
+                        {slide.titleLines[0]}
+                        <br />
+                        {slide.titleLines[1]}
+                      </h1>
+                      <p class="_hero__description">{slide.description}</p>
+                      <Btn
+                        href="mailto:info@tetacom.pro"
+                        class="_hero__callback"
+                      >
+                        <span>{content.writeUs}</span>
+                      </Btn>
+                    </div>
+                    <div class="_hero__slider-item">
+                      <img
+                        src={image1x}
+                        srcset={`${image1x} 1x, ${image2x} 2x`}
+                        alt={slide.imageAlt}
+                        loading={index === 0 ? undefined : "lazy"}
+                      />
+                    </div>
+                  </div>
+                </Container>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="_hero__wrap">
+    <Container>
+      <div class="_hero__body">
+        <ol id="hero-pagination" class="_hero__pagination">
+          <li class="_hero__pagination-item">
+            <button type="button" data-slide="0" class="active">01</button>
+          </li>
+          <li class="_hero__pagination-item">
+            <button type="button" data-slide="1">02</button>
+          </li>
+        </ol>
+      </div>
+    </Container>
+  </div>
+</section>
+
+<style is:global>
+  ._hero {
+    position: relative;
+    padding-top: var(--header);
+    background-color: var(--bg-color);
+    background-image: var(--hero-bg);
+    background-position: 29px 48px;
+    background-repeat: repeat;
+    background-size: 60px 62px;
+    color: var(--white-color);
+  }
+
+  ._hero__slider .swiper-slide {
+    overflow: hidden;
+  }
+
+  ._hero__slider-content {
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - var(--header) - 100px);
+  }
+
+  ._hero__slider-body {
+    padding: 30px 0;
+  }
+
+  ._hero__slider-item {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+  }
+
+  ._hero__slider-item img {
+    max-width: 100%;
+    max-height: calc(100% - 20px);
+    object-fit: contain;
+    transition: all var(--delay) ease-in-out;
+  }
+
+  ._hero__body {
+    padding: 20px 0 60px;
+  }
+
+  ._hero__title {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.1em;
+  }
+
+  ._hero__description {
+    margin: 24px 0 0;
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  ._hero__callback {
+    margin-top: 40px;
+  }
+
+  ._hero__pagination {
+    display: flex;
+    align-items: flex-end;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    pointer-events: auto;
+  }
+
+  ._hero__pagination-item:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  ._hero__pagination-item button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 48px;
+    height: 50px;
+    padding: 0 4px 20px;
+    border: none;
+    background: none;
+    color: #76798d;
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-size: 19px;
+    font-weight: 300;
+    transition: all calc(var(--delay) * 2) ease-in-out;
+  }
+
+  ._hero__pagination-item button::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #76798d;
+    transition: all calc(var(--delay) * 2) ease-in-out;
+  }
+
+  ._hero__pagination-item button:hover {
+    color: var(--white-color);
+  }
+
+  ._hero__pagination-item button.active {
+    color: var(--white-color);
+    font-size: 28px;
+    font-weight: 400;
+  }
+
+  ._hero__pagination-item button.active::after {
+    height: 2px;
+    background-color: #0179d2;
+  }
+
+  /* tablet */
+  @media (width >= 769px) {
+    ._hero {
+      min-height: 100vh;
+      background-image: var(--hero-subtract), var(--hero-bg);
+      background-position:
+        100% 0,
+        29px 48px;
+      background-repeat: no-repeat, repeat;
+      background-size:
+        auto calc(100% - 63px),
+        60px 62px;
+    }
+
+    ._hero__title {
+      font-size: 44px;
+      line-height: 55px;
+    }
+  }
+
+  /* desktop */
+  @media (width >= 1081px) {
+    ._hero__slider {
+      position: absolute;
+      width: 100%;
+      height: calc(100% - var(--header));
+      transform: translateZ(0);
+    }
+
+    ._hero__slider-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+      height: 100%;
+      min-height: calc(100vh - var(--header));
+    }
+
+    ._hero__slider-body {
+      padding: 0 0 300px;
+    }
+
+    ._hero__slider-item {
+      justify-content: flex-start;
+    }
+
+    ._hero__wrap {
+      min-height: calc(100vh - var(--header));
+    }
+
+    ._hero__body {
+      display: flex;
+      align-items: flex-end;
+      min-height: calc(100vh - var(--header));
+      height: 100%;
+      padding: 0 0 100px;
+      pointer-events: none;
+      transform: translateZ(0);
+    }
+
+    ._hero__callback {
+      margin-top: 58px;
+    }
+  }
+
+  /* widescreen */
+  @media (width >= 1140px) {
+    ._hero__slider-content {
+      grid-template-columns: 5fr 7fr;
+    }
+  }
+
+  /* desktop-only */
+  @media (width < 1081px) {
+    ._hero__slider-item img {
+      display: none;
+    }
+  }
+
+  /* from 1500 to 1700 */
+  @media (width >= 1500px) and (width <= 1700px) {
+    ._hero__slider-item img {
+      max-width: calc(100% + 50px);
+    }
+  }
+
+  /* from 1701 to 2000 */
+  @media (width >= 1701px) and (width <= 2000px) {
+    ._hero__slider-item img {
+      max-width: calc(100% + 150px);
+    }
+  }
+
+  /* from 2001 to 2400 */
+  @media (width >= 2001px) and (width <= 2400px) {
+    ._hero__slider-item img {
+      max-width: calc(100% + 300px);
+    }
+  }
+
+  /* ultra-wide */
+  @media (width >= 2401px) {
+    ._hero__slider-item img {
+      max-width: calc(100% + 500px);
+    }
+  }
+</style>
+
+<script>
+  import Swiper from "swiper";
+  import { Autoplay } from "swiper/modules";
+
+  const sliderElement = document.getElementById("hero-slider");
+  const paginationElement = document.getElementById("hero-pagination");
+
+  if (sliderElement instanceof HTMLElement && paginationElement instanceof HTMLElement) {
+    const buttons = paginationElement.querySelectorAll("button[data-slide]");
+
+    const updatePagination = (activeIndex) => {
+      buttons.forEach((button) => {
+        button.classList.toggle(
+          "active",
+          Number(button.dataset.slide) === activeIndex,
+        );
+      });
+    };
+
+    const slider = new Swiper(sliderElement, {
+      modules: [Autoplay],
+      speed: 500,
+      autoHeight: true,
+      autoplay: {
+        delay: 7000,
+      },
+      breakpoints: {
+        1081: {
+          speed: 1000,
+          autoHeight: false,
+        },
+      },
+    });
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const targetSlideNumber = Number(button.dataset.slide);
+
+        slider.slideTo(targetSlideNumber);
+        updatePagination(targetSlideNumber);
+      });
+    });
+
+    slider.on("slideChangeTransitionStart", () => {
+      updatePagination(slider.activeIndex);
+    });
+  }
+</script>
