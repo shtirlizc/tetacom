@@ -1,6 +1,4 @@
+.astro/
 node_modules/
-# Ignore artifacts:
+package-lock.json
 dist/
-coverage/
-
-vite-env.d.ts
