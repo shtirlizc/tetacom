@@ -60,7 +60,7 @@ const navItems = [
 ];
 ---
 
-<header class="_header">
+<header id="site-header" class="_header">
   <a href={homeHref} class="_header__logo" aria-label="Tetacom">
     <svg
       width="162"
@@ -346,3 +346,32 @@ const navItems = [
     }
   }
 </style>
+
+<script>
+  const header = document.getElementById("site-header");
+
+  if (header instanceof HTMLElement) {
+    const addActiveState = () => {
+      header.classList.add("active");
+    };
+
+    const removeActiveState = () => {
+      header.classList.remove("active");
+    };
+
+    if (window.pageYOffset) {
+      addActiveState();
+    }
+
+    document.addEventListener("scroll", () => {
+      if (window.pageYOffset) {
+        addActiveState();
+      } else if (
+        sessionStorage.getItem("side_menu") !== "true" ||
+        window.innerWidth > 1080
+      ) {
+        removeActiveState();
+      }
+    });
+  }
+</script>

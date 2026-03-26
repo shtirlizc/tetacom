@@ -1,0 +1,33 @@
+---
+interface Props {
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div";
+  class?: string;
+}
+
+const { as: Tag = "h2", class: className = "" } = Astro.props;
+---
+
+<Tag class:list={["_title", className]}>
+  <slot />
+</Tag>
+
+<style>
+  ._title {
+    font-size: 42px;
+    font-weight: 500;
+  }
+
+  /* mobile */
+  @media (width < 769px) {
+    ._title {
+      text-align: center;
+    }
+  }
+
+  /* desktop */
+  @media (width < 1081px) {
+    ._title {
+      font-size: 32px;
+    }
+  }
+</style>
