@@ -1,0 +1,163 @@
+---
+import Container from "../components/container.astro";
+import TextContent from "../components/text-content.astro";
+import Title from "../components/title.astro";
+
+interface Props {
+  locale: "ru" | "en";
+}
+
+const { locale } = Astro.props;
+
+const dictionary = {
+  ru: {
+    title: "Технологический стек компании",
+    intro:
+      "Мы — динамично развивающаяся компания, специализирующаяся на разработке современного программного обеспечения с использованием передовых технологий. Наши решения построены на основе следующих технологий и инструментов:",
+    sections: [
+      {
+        title: "Основные технологии и инструменты",
+        items: [
+          ".NET Core: Мы активно используем .NET Core во всех своих проектах, что обеспечивает высокую производительность и кросс-платформенность наших приложений.",
+          "C#: Язык программирования C# является основным в нашей компании, что позволяет нам задействовать все современные возможности для создания эффективного и надежного кода.",
+          "JavaScript: Мы активно применяем JavaScript для клиентской части веб-приложений, что позволяет создавать интерактивные и удобные интерфейсы.",
+          "ORM и MicroORM: В рамках работы с базами данных мы широко применяем Entity Framework Core (EFCore) и Dapper, предоставляя гибкие и эффективные средства взаимодействия с данными.",
+          "SPA (Single Page Applications): Наши проекты работают как одностраничные приложения, обладают высокой производительностью и отзывчивостью. Создаем мы их используя наиболее популярные современные фреймворки - Angular, React.",
+          "RxJS: Активно применяем библиотеку для работы с реактивным программированием, которая помогает нам эффективно управлять асинхронными операциями.",
+          "Effector: Мы используем Effector в наших проектах для управления состоянием. Это мощная библиотека, обеспечивающая высокую производительность и предсказуемость в управлении состоянием наших React-приложений. Effector облегчает разработку сложных приложений за счет декларативного подхода.",
+          "D3.js: Для создания динамических и интерактивных визуализаций данных мы активно применяем D3.js. Эта JavaScript-библиотека позволяет манипулировать документами на основе данных, создавая впечатляющие графики и схемы, которые легко интегрируются в наши веб-приложения.",
+          "Three.js: Для разработки захватывающих 3D-график и анимаций мы используем Three.js. Эта библиотека на JavaScript дает нам возможность создавать сложные трехмерные сцены и визуальные эффекты, обеспечивающие увлекательный пользовательский опыт.",
+          "Cube.js: Для аналитической работы и бизнес-интеллекта мы используем Cube.js. Благодаря этой аналитической платформе, мы можем легко создавать сложные аналитические панели и отчеты, обеспечивая наши проекты мощными инструментами анализа данных.",
+        ],
+      },
+      {
+        title: "Базы данных и кэширование",
+        items: [
+          "PostgreSQL: В качестве основной системы управления базами данных мы используем PostgreSQL, что позволяет нам эффективно управлять данными и обеспечивать высокую производительность запросов.",
+          "Redis: Для кэширования и быстрого доступа к часто запрашиваемым данным мы используем Redis.",
+        ],
+      },
+      {
+        title: "Контроль версий и управление репозиториями",
+        items: [
+          "Git: Мы используем систему контроля версий git и следуем принципам GitFlow для управления процессом разработки.",
+          "Version control system: Наши репозитории управляются с использованием Git и интегрированы с системами управления репозиториями, такими как Azure, GitLab и GitHub.",
+        ],
+      },
+      {
+        title: "Асинхронное программирование и брокеры сообщений",
+        items: [
+          "Асинхронные системы: Мы разрабатываем асинхронные системы для повышения производительности и снижения задержек обработки данных.",
+          "RabbitMQ: В компании используется брокер сообщений RabbitMQ для обработки и маршрутизации сообщений между компонентами системы.",
+        ],
+      },
+      {
+        title: "Дополнительные технологии",
+        items: [
+          "Linux, Docker и docker-compose: работа контейнеризацией с помощью Docker и docker-compose позволяет нашим разработчикам создавать изолированные и легко масштабируемые окружения.",
+          "Kubernetes: Мы используем Kubernetes для оркестрации контейнеров, что обеспечивает автоматизацию развёртывания, масштабирования и управления приложениями.",
+          "Nginx: Для обработки входящих web-запросов и распределения нагрузки на серверы мы применяем Nginx.",
+          "QuestDB, CubeJS, Nats: В своих проектах мы также можем использовать QuestDB для аналитики в режиме реального времени, CubeJS для визуализации данных и Nats для обработки потоков данных.",
+        ],
+      },
+    ],
+    outro:
+      "Мы гордимся тем, что используем передовые и проверенные временем технологии для создания высококачественных и масштабируемых веб-приложений. Наш технологический стек позволяет нам разрабатывать инновационные решения, поддерживая высокий уровень кодовой базы и производительности.",
+  },
+  en: {
+    title: "Company technology stack",
+    intro:
+      "We are a dynamically developing company specializing in the development of modern software using advanced technologies. Our solutions are built on the following technologies and tools:",
+    sections: [
+      {
+        title: "Core technologies and tools",
+        items: [
+          ".NET Core: We actively use .NET Core in all our projects, which ensures high performance and cross-platform functionality of our applications.",
+          "C#: The C# programming language is the main one in our company, which allows us to use all modern capabilities to create efficient and reliable code.",
+          "ORM and MicroORM: We make extensive use of Entity Framework Core (EFCore) and Dapper when working with databases, providing flexible and efficient means of interacting with data.",
+          "JavaScript: We actively use JavaScript for the client side of web applications, which allows us to create interactive and user-friendly interfaces.",
+          "SPA (Single Page Applications): Our projects work as single page applications, have high performance and responsiveness. We create them using the most popular modern frameworks - Angular, React.",
+          "RxJS: We actively use a library for working with reactive programming, which helps us effectively manage asynchronous operations.",
+          "Effector: We use Effector in our projects for state management. It is a powerful library that provides high performance and predictability in state management for our React applications. Effector makes it easier to develop complex applications through a declarative approach.",
+          "D3.js: We actively use D3.js to create dynamic and interactive data visualizations. This JavaScript library allows us to manipulate data-driven documents to create impressive graphs and diagrams that easily integrate into our web applications.",
+          "Three.js: We use Three.js to develop immersive 3D graphics and animations. This JavaScript library gives us the ability to create complex 3D scenes and visual effects that provide an engaging user experience.",
+          "Cube.js: For analytical work and business intelligence, we use Cube.js. Thanks to this analytics platform, we can easily create complex analytical dashboards and reports, providing our projects with powerful data analysis tools.",
+        ],
+      },
+      {
+        title: "Databases and Caching",
+        items: [
+          "PostgreSQL: We use PostgreSQL as our main database management system, which allows us to efficiently manage data and provide high query performance.",
+          "Redis: We use Redis to cache and quickly access frequently accessed data.",
+        ],
+      },
+      {
+        title: "Version control and repository management",
+        items: [
+          "Git: We use the git version control system and follow GitFlow principles to manage the development process.",
+          "Version control system: Our repositories are managed using Git and are integrated with repository management systems such as Azure, GitLab and GitHub.",
+        ],
+      },
+      {
+        title: "Asynchronous Programming and Message Brokers",
+        items: [
+          "Asynchronous Systems: We develop asynchronous systems to improve performance and reduce processing latency.",
+          "RabbitMQ: The company uses the RabbitMQ message broker to process and route messages between system components.",
+        ],
+      },
+      {
+        title: "Additional technologies",
+        items: [
+          "Linux, Docker and docker-compose: Containerization with Docker and docker-compose allows our developers to create isolated and easily scalable environments.",
+          "Kubernetes: We use Kubernetes to orchestrate containers, which automates the deployment, scaling, and management of applications.",
+          "Nginx: We use Nginx to process incoming web requests and distribute the load on servers.",
+          "QuestDB, CubeJS, Nats: In our projects, we can also use QuestDB for real-time analytics, CubeJS for data visualization and Nats for processing data streams.",
+        ],
+      },
+    ],
+    outro:
+      "We pride ourselves on using cutting-edge and time-tested technologies to create high-quality, scalable web applications. Our technology stack allows us to develop innovative solutions while maintaining a high level of codebase and performance.",
+  },
+} as const;
+
+const content = dictionary[locale];
+---
+
+<section class="_tech-stack" id="tech-stack">
+  <Container>
+    <Title>{content.title}</Title>
+    <TextContent class="_tech-stack__body">
+      <p>{content.intro}</p>
+
+      {content.sections.map((section) => (
+        <>
+          <h3>{section.title}</h3>
+          <ul>
+            {section.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </>
+      ))}
+
+      <p>{content.outro}</p>
+    </TextContent>
+  </Container>
+</section>
+
+<style is:global>
+  ._tech-stack {
+    padding: 80px 0;
+  }
+
+  ._tech-stack__body {
+    margin-top: 60px;
+  }
+
+  /* desktop */
+  @media (width >= 1081px) {
+    ._tech-stack {
+      padding: 40px 0;
+    }
+  }
+</style>
