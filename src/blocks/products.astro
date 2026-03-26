@@ -1,0 +1,286 @@
+---
+import Container from "../components/container.astro";
+import Title from "../components/title.astro";
+import { withBase } from "../utils/with-base";
+
+interface Props {
+  locale: "ru" | "en";
+}
+
+const { locale } = Astro.props;
+
+const productImage = (name: string) => ({
+  src: withBase(`img/products/${name}.png`),
+  srcset: `${withBase(`img/products/${name}.png`)} 1x, ${withBase(`img/products/${name}@2x.png`)} 2x`,
+});
+
+const sponsorImage = productImage("innovation-assistance-fund");
+
+const dictionary = {
+  ru: {
+    title: "Наши продукты",
+    sponsorText: "Создано при поддержке<br />Фонда Содействия Инновациям",
+    items: [
+      {
+        title: "Симулятор процесса кислотной обработки нефтяной скважины",
+        image: "fractal",
+        imageAlt: "Fractal",
+        features: [
+          "Симулятор процесса кислотной обработки нефтяной скважины",
+          "Цифровая модель закачки технологических жидкостей в пласт",
+          "Подбор оптимальных технико-экономических параметров проведения кислотной обработки призабойной зоны пласта",
+          "Калибровка дизайна ОПЗ по данным тестовых закачек",
+          "Адресная адаптация ГТМ к условиям эксплуатации месторождений нефти и газа",
+          "Комплексный анализ добычи и оценка технико-экономической эффективности скважины до и после ГТМ",
+        ],
+      },
+      {
+        title:
+          "Симулятор процесса термохимического пенокислотного воздействия на скважину",
+        image: "fractal",
+        imageAlt: "Fractal",
+        features: [
+          "Модуль термобарохимического воздействия в вертикальных и наклонно-направленных нефтегазовых скважинах",
+          "Оптимизация процесса планирования, проектирования и анализа ГТМ",
+          "Комплексное математическое моделирование химических и тепловых процессов, происходящих в скважине и пласте",
+          "Модуль поиска оптимальных решений на основе уникальных высокопроизводительных алгоритмов",
+          "Точные прогнозные экономические показатели ГТМ и эксплуатации нефтяных скважин",
+        ],
+      },
+      {
+        title:
+          "Комплекс программных инструментов, направленных на&nbsp;повышение эффективности геолого-технических мероприятий в&nbsp;нефтяных и&nbsp;газовых скважинах",
+        image: "opz",
+        imageAlt: "OPZ",
+        features: [
+          "Проектирование ОПЗ с использованием осадкообразующих составов;",
+          "Проектирование ОПЗ с применением гидромониторной насадки;",
+          "Моделирование эволюции прискважинной зоны в процессе эксплуатации скважины и анализа добычи;",
+          "Модуль прогнозирования, предупреждения и ликвидации осложнений в пласте;",
+          "Проектирование бурения радиальных каналов с последующей ОПЗ;",
+          "Проектирование горизонтальных скважин.",
+        ],
+      },
+      {
+        title:
+          "Симулятор ремонтно-изоляционных работ - программное обеспечение для проектирования водоизоляционных работ в нефтяных скважинах",
+        image: "opz",
+        imageAlt: "OPZ",
+        features: [
+          "Формирование плана операций и закачки изолирующих составов для составления дизайна мероприятия. Расчёт технологических параметров проведения мероприятий по снижению обводнённости;",
+          "Подбор дизайна работ с использованием искусственного интеллекта и экспертных систем;",
+          "Отображение распределения изоляционных экранов, изменение профилей дебита и графики давлений;",
+          "Определение технологической и экономической эффективности ремонтно-изоляционных работ;",
+          "Динамические реестры химических реагентов, изоляционных составов и скважинного оборудования;",
+        ],
+      },
+    ],
+  },
+  en: {
+    title: "Our products",
+    sponsorText:
+      "Created with the support of the<br />Fund for Assistance to Small Innovative Enterprises",
+    items: [
+      {
+        title: "Oil well acidizing process simulator",
+        image: "fractal",
+        imageAlt: "Fractal",
+        features: [
+          "Toolkit for downloading, processing and interpreting geophysical and geomechanical studies",
+          "Digital model of injecting process fluids into the reservoir",
+          "Selection of optimal technical and economic parameters for acid treatment of the bottomhole zone",
+          "Calibration of the bottomhole treatment design according to the data of test injections",
+          "Targeted adaptation of remedial stimulation to the operating conditions of oil and gas fields",
+          "Comprehensive analysis of production and feasibility study of the well before and after remedial stimulation",
+        ],
+      },
+      {
+        title:
+          "Simulator of the process of thermochemical foam-acid treatment on the well",
+        image: "fractal",
+        imageAlt: "Fractal",
+        features: [
+          "Thermobarochemical treatment module in vertical and directional oil and gas wells",
+          "Оptimization of the process of planning, design and analysis of remedial stimulation",
+          "Complex mathematical modeling of chemical and thermal processes occurring in the well and reservoir",
+          "Optimal solutions finding module based on unique high-performance algorithms",
+          "Accurate predictive economic indicators of remedial stimulation and oil well exploitation",
+        ],
+      },
+      {
+        title:
+          "A&nbsp;set of&nbsp;software tools designed to&nbsp;improve the efficiency of&nbsp;geological and engineering operations in&nbsp;oil and gas wells.",
+        image: "opz",
+        imageAlt: "OPZ",
+        features: [
+          "Planning of acid treatments using sediment-forming compositions;",
+          "Design of acid treatments using the Hydro-Monitor nozzle;",
+          "Modelling changes in the properties of the wellbore zone during well operation and production analysis;",
+          "Module for prediction, prevention and mitigation of reservoir complications;",
+          "Design of radial channel wells with further acid treatment;",
+          "Horizontal well design.",
+        ],
+      },
+      {
+        title:
+          "Remedial and Isolation Job Simulator — software for designing water shutoff and isolation operations in oil wells.",
+        image: "fractal",
+        imageAlt: "RIR",
+        features: [
+          "Preparation of treatment design, including operation planning and pumping schedule for isolation fluids; calculation of process parameters to reduce water cut;",
+          "Job design optimization using artificial intelligence and expert systems;",
+          "Visualization of isolation barrier placement, production profile changes, and pressure behavior;",
+          "Assessment of the technological and economic efficiency of remedial and isolation operations;",
+          "Dynamic databases of chemical reagents, isolation materials, and downhole equipment;",
+        ],
+      },
+    ],
+  },
+} as const;
+
+const content = dictionary[locale];
+---
+
+<section class="_products" id="products">
+  <Container>
+    <Title class="_products__title">{content.title}</Title>
+    <div class="_products__items">
+      {content.items.map((item) => {
+        const image = productImage(item.image);
+
+        return (
+          <article class="_products__item">
+            <div class="_products__item-content">
+              <h3 class="_products__item-title" set:html={item.title}></h3>
+              <ul class="_products__item-features">
+                {item.features.map((feature) => (
+                  <li class="_products__item-feature" set:html={feature}></li>
+                ))}
+              </ul>
+              <a
+                href="https://fasie.ru/"
+                target="_blank"
+                rel="noreferrer"
+                class="_products__item-sponsor"
+              >
+                <img
+                  src={sponsorImage.src}
+                  srcset={sponsorImage.srcset}
+                  alt=""
+                  width="155"
+                  height="87"
+                />
+                <span set:html={content.sponsorText}></span>
+              </a>
+            </div>
+            <div class="_products__item-picture">
+              <img
+                src={image.src}
+                srcset={image.srcset}
+                alt={item.imageAlt}
+              />
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </Container>
+</section>
+
+<style is:global>
+  ._products {
+    padding: 126px 0;
+  }
+
+  ._products__items {
+    margin-top: 32px;
+  }
+
+  ._products__item {
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+  }
+
+  ._products__item:not(:last-child) {
+    margin-bottom: 24px;
+  }
+
+  ._products__item-content {
+    padding: 40px;
+  }
+
+  ._products__item-title {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 35px;
+  }
+
+  ._products__item-features {
+    margin-top: 51px;
+    padding-left: 24px;
+  }
+
+  ._products__item-feature {
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  ._products__item-picture {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 100%;
+    font-size: 0;
+  }
+
+  ._products__item-picture img {
+    max-width: calc(100% + 112px);
+    max-height: 100%;
+  }
+
+  ._products__item-sponsor {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 72px;
+    color: var(--grey-40);
+  }
+
+  ._products__item-sponsor:hover {
+    color: var(--grey-50);
+  }
+
+  ._products__item-sponsor img {
+    flex: 0 0 155px;
+  }
+
+  ._products__item-sponsor span {
+    margin-left: 28px;
+    font-size: 14px;
+    line-height: 17px;
+    transition: color var(--delay) ease-in-out;
+  }
+
+  /* tablet */
+  @media (width >= 769px) {
+    ._products__item {
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+    }
+  }
+
+  /* touch */
+  @media (width < 1081px) {
+    ._products {
+      padding: 40px 0;
+    }
+
+    ._products__item-content {
+      padding: 20px;
+    }
+
+    ._products__item-features {
+      margin-top: 20px;
+    }
+  }
+</style>
