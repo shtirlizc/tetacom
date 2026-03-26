@@ -1,0 +1,113 @@
+---
+import Container from "../components/container.astro";
+import Title from "../components/title.astro";
+import { withBase } from "../utils/with-base";
+
+interface Props {
+  locale: "ru" | "en";
+}
+
+const { locale } = Astro.props;
+
+const dictionary = {
+  ru: {
+    title: "Отзывы",
+    items: [
+      {
+        href: withBase("img/reviews/review-opz-1.jpg"),
+        alt: "Отзыв клиента о продукте ОПЗ",
+      },
+      {
+        href: withBase("img/reviews/review-opz-2.jpg"),
+        alt: "Отзыв клиента о продукте ОПЗ",
+      },
+    ],
+  },
+  en: {
+    title: "Reviews",
+    items: [
+      {
+        href: withBase("img/reviews/review-opz-1.jpg"),
+        alt: "Customer review of the HMO product",
+      },
+      {
+        href: withBase("img/reviews/review-opz-2.jpg"),
+        alt: "Customer review of the HMO product",
+      },
+    ],
+  },
+} as const;
+
+const content = dictionary[locale];
+---
+
+<section class="_reviews" id="reviews">
+  <Container>
+    <Title>{content.title}</Title>
+    <div class="_reviews__body" id="reviews-gallery">
+      {content.items.map((item, index) => (
+        <div class="_reviews__item">
+          <a
+            data-fslightbox="gallery"
+            href={item.href}
+            id={`reviews-gallery-item-${index + 1}`}
+          >
+            <img src={item.href} alt={item.alt} />
+          </a>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>
+
+<script>
+  import "../vendors/fslightbox.js";
+
+  window.refreshFsLightbox?.();
+</script>
+
+<style is:global>
+  ._reviews {
+    padding: 80px 0;
+  }
+
+  ._reviews__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 60px;
+  }
+
+  ._reviews__item {
+    overflow: hidden;
+    padding: 20px;
+    border: 1px solid var(--grey-50);
+    border-radius: 24px;
+  }
+
+  ._reviews__item a {
+    display: block;
+    font-size: 0;
+  }
+
+  ._reviews__item img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* touch */
+  @media (width < 1081px) {
+    ._reviews__body {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 40px;
+    }
+  }
+
+  /* desktop */
+  @media (width >= 1081px) {
+    ._reviews {
+      padding: 40px 0;
+    }
+  }
+</style>
