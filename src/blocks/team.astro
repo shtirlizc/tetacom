@@ -1,0 +1,171 @@
+---
+import Subtitle from "../components/subtitle.astro";
+import { withBase } from "../utils/with-base";
+
+interface Props {
+  locale: "ru" | "en";
+}
+
+const { locale } = Astro.props;
+
+const teamPhoto = (name: string) => ({
+  src: withBase(`img/team/${name}.jpg`),
+  srcset: `${withBase(`img/team/${name}.jpg`)} 1x, ${withBase(`img/team/${name}@2x.jpg`)} 2x`,
+});
+
+const dictionary = {
+  ru: {
+    title: "Наша команда",
+    people: [
+      {
+        image: "marat",
+        alt: "Марат Ситдиков",
+        name: "Марат Ситдиков",
+        skills:
+          "Кандидат наук, профессионал в нефтегазовой отрасли с девятилетним стажем. Имеет 5 лет работы с крупными компаниями в отрасли",
+      },
+      {
+        image: "guzel",
+        alt: "Гузель Булгакова",
+        name: "Гузель Булгакова",
+        skills:
+          "Автор более 100 научных работ. Эксперт в области физико-математического моделирования подземной гидромеханики, геомеханики и термодинамики процессов в пористых средах",
+      },
+      {
+        image: "andrey",
+        alt: "Андрей Шарифуллин",
+        name: "Андрей Шарифуллин",
+        skills:
+          "Кандидат наук, специалист в области нефтяной промышленности с более чем 13-летним опытом работы в крупных нефтедобывающих компаниях «Роснефть» и «Башнефть»",
+      },
+      {
+        image: "tanya",
+        alt: "Татьяна Назарова",
+        name: "Татьяна Назарова",
+        skills:
+          "Проект-менеджер с трехлетним стажем ведения проектов в нефтегазовой отрасли с использованием фреймворков Agile и Scrum",
+      },
+    ],
+  },
+  en: {
+    title: "Our team",
+    people: [
+      {
+        image: "marat",
+        alt: "Марат Ситдиков",
+        name: "Marat Sitdikov",
+        skills:
+          "PhD, a professional in the oil and gas industry with nine years of experience. Has 5 years of experience working with major companies in the industry",
+      },
+      {
+        image: "guzel",
+        alt: "Гузель Булгакова",
+        name: "Guzel Bulgakova",
+        skills:
+          "Author of over 100 scientific papers. Expert in the field of physical and mathematical modeling of underground hydromechanics, geomechanics and thermodynamics of processes in porous medium",
+      },
+      {
+        image: "andrey",
+        alt: "Андрей Шарифуллин",
+        name: "Andrew Sharifullin",
+        skills:
+          "PhD, Professional in Petroleum Industry with over 13 years of experience with major oil producers Rosneft and Bashneft Leading R&D projects in Company",
+      },
+      {
+        image: "tanya",
+        alt: "Татьяна Назарова",
+        name: "Tatiana Nazarova",
+        skills:
+          "Project manager with three years of project management experience in the oil and gas industry using Agile and Scrum frameworks",
+      },
+    ],
+  },
+} as const;
+
+const content = dictionary[locale];
+---
+
+<div class="_team">
+  <Subtitle class="_team__title">{content.title}</Subtitle>
+  <div class="_team__people">
+    {content.people.map((person) => {
+      const photo = teamPhoto(person.image);
+
+      return (
+        <div class="_team__person">
+          <div class="_team__person-image">
+            <img
+              src={photo.src}
+              srcset={photo.srcset}
+              width="134"
+              height="134"
+              alt={person.alt}
+            />
+          </div>
+          <h4 class="_team__person-name">{person.name}</h4>
+          <p class="_team__person-skills">{person.skills}</p>
+        </div>
+      );
+    })}
+  </div>
+</div>
+
+<style is:global>
+  ._team__people {
+    display: grid;
+    gap: var(--gap);
+    margin-top: 36px;
+  }
+
+  ._team__person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    background-color: var(--white-color);
+    text-align: center;
+  }
+
+  ._team__person-image {
+    font-size: 0;
+  }
+
+  ._team__person-image img {
+    max-width: 100%;
+  }
+
+  ._team__person-name {
+    margin-top: 28px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+  }
+
+  ._team__person-skills {
+    margin: 12px 0 0;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  /* mobile */
+  @media (width < 769px) {
+    ._team__person {
+      max-width: 360px;
+      margin: auto;
+    }
+  }
+
+  /* tablet-only */
+  @media (width >= 769px) and (width < 1081px) {
+    ._team__people {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* desktop */
+  @media (width >= 1081px) {
+    ._team__people {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

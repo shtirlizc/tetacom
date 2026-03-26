@@ -1,0 +1,214 @@
+---
+import Achievements from "./achievements.astro";
+import Container from "../components/container.astro";
+import Team from "./team.astro";
+import Title from "../components/title.astro";
+import { withBase } from "../utils/with-base";
+
+interface Props {
+  locale: "ru" | "en";
+}
+
+const { locale } = Astro.props;
+
+const partnerImage = (name: string) => ({
+  src: withBase(`img/partners/${name}.png`),
+  srcset: `${withBase(`img/partners/${name}.png`)} 1x, ${withBase(`img/partners/${name}@2x.png`)} 2x`,
+});
+
+const partners = [
+  {
+    image: "agni",
+    width: 100,
+    height: 100,
+    alt: "Альметьевский Государственный Нефтяной Институт",
+  },
+  {
+    image: "tatneft",
+    width: 157,
+    height: 50,
+    alt: "TATNEFT",
+  },
+  {
+    image: "kfu",
+    width: 167,
+    height: 50,
+    alt: "Казанский федеральный университет",
+  },
+  {
+    image: "bashnipineft",
+    width: 115,
+    height: 80,
+    alt: "РН-БашНИПИнефть",
+  },
+  {
+    image: "ugntu",
+    width: 139,
+    height: 60,
+    alt: "УГНТУ",
+  },
+] as const;
+
+const dictionary = {
+  ru: {
+    title: "О нас",
+    description:
+      "Тетаком — инжиниринговая компания, выполняющая работы от НИОКР до продаж",
+  },
+  en: {
+    title: "About us",
+    description:
+      "Tetacom is an engineering company that performs work from R&D to sales",
+  },
+} as const;
+
+const content = dictionary[locale];
+---
+
+<section class="_about" id="about">
+  <Container>
+    <Title class="_about__title">{content.title}</Title>
+    <p class="_about__description">{content.description}</p>
+
+    <ul class="_about__partners">
+      {partners.map((partner) => {
+        const image = partnerImage(partner.image);
+
+        return (
+          <li class="_about__partners-item">
+            <img
+              src={image.src}
+              srcset={image.srcset}
+              width={partner.width}
+              height={partner.height}
+              alt={partner.alt}
+            />
+          </li>
+        );
+      })}
+    </ul>
+
+    <div class="_about__achievements">
+      <Achievements locale={locale} />
+    </div>
+
+    <div class="_about__team">
+      <Team locale={locale} />
+    </div>
+  </Container>
+</section>
+
+<style is:global>
+  ._about {
+    padding: 122px 0;
+    background-color: #f7f7f7;
+  }
+
+  ._about__description {
+    margin: 39px 0 0;
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  ._about__partners {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 120px;
+    list-style: none;
+  }
+
+  ._about__partners-item {
+    position: relative;
+    display: flex;
+    flex-basis: 100%;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+  }
+
+  ._about__partners-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    right: 0;
+    width: 1px;
+    height: calc(100% + 10px);
+    background-color: var(--grey-80);
+  }
+
+  ._about__partners-item img {
+    filter: grayscale(100%);
+  }
+
+  ._about__achievements {
+    margin-top: 79px;
+  }
+
+  ._about__team {
+    margin-top: 119px;
+  }
+
+  /* mobile */
+  @media (width < 769px) {
+    ._about__description {
+      text-align: center;
+    }
+
+    ._about__partners-item:not(:last-child)::after {
+      top: auto;
+      right: 50%;
+      bottom: 0;
+      width: 200px;
+      height: 1px;
+      transform: translate(50%);
+    }
+  }
+
+  /* tablet-only */
+  @media (width >= 769px) and (width < 1081px) {
+    ._about__partners-item {
+      flex-basis: 33%;
+      margin-bottom: 30px;
+      padding: 0;
+    }
+
+    ._about__partners-item:nth-child(3n)::after {
+      display: none;
+    }
+  }
+
+  /* desktop */
+  @media (width >= 1081px) {
+    ._about__partners-item {
+      flex-basis: 20%;
+      margin-bottom: 50px;
+      padding: 0;
+    }
+
+    ._about__partners-item:nth-child(5n)::after {
+      display: none;
+    }
+  }
+
+  /* touch */
+  @media (width < 1081px) {
+    ._about {
+      padding: 40px 0;
+    }
+
+    ._about__partners {
+      margin-top: 60px;
+    }
+
+    ._about__achievements {
+      margin-top: 40px;
+    }
+
+    ._about__team {
+      margin-top: 60px;
+    }
+  }
+</style>

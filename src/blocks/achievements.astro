@@ -1,0 +1,138 @@
+---
+import Subtitle from "../components/subtitle.astro";
+
+interface Props {
+  locale: "ru" | "en";
+}
+
+const { locale } = Astro.props;
+
+const dictionary = {
+  ru: {
+    title: "Наши успехи",
+    description:
+      "Развитие экспертного уровня компании, а также рыночные тенденции привели к развитию ИТ-направления, благодаря которому у Заказчика есть возможность получить готовые средства проектирования геолого-технических мероприятий, повысить эффективность и упростить технологические и бизнес-процессы. Нашим приоритетом является создание тренажеров процессов добычи природных углеводородов, позволяющих превзойти по функциональности зарубежные аналоги, а также адаптируемых к различным геолого-физическим условиям.",
+    items: [
+      {
+        value: "50",
+        description: "выполненных НИОКР для собственных и сторонних нужд",
+      },
+      {
+        value: "+25",
+        description:
+          "высококлассных специалистов в отрасли, готовых менять мир к лучшему",
+      },
+      {
+        value: "310",
+        description:
+          "скважин пробурено с помощью наших инструментов мониторинга и анализа",
+      },
+      {
+        value: "42",
+        description:
+          "программных комплекса для мониторинга бурения, симуляции ГТМ и прогноза добычи",
+      },
+    ],
+  },
+  en: {
+    title: "Our successes",
+    description:
+      "Development of expert level of the company, as well as market trends led to the development of IT direction, thanks to which the Customer has the opportunity to get ready design tools for geological and technical activities, improve efficiency and simplify technological and business processes. Our priority is to create simulators of natural hydrocarbon production processes, allowing to surpass the functionality of foreign analogues, as well as adaptable to different geological and physical conditions",
+    items: [
+      {
+        value: "50",
+        description: "completed R&D for in-house and third-party needs",
+      },
+      {
+        value: "+25",
+        description:
+          "high-class professionals in the industry who are ready to change the world for the better",
+      },
+      {
+        value: "310",
+        description: "wells drilled with our monitoring and analysis tools",
+      },
+      {
+        value: "42",
+        description:
+          "software package for drilling monitoring, remedial stimulation and production forecasts",
+      },
+    ],
+  },
+} as const;
+
+const content = dictionary[locale];
+---
+
+<div class="_achievements">
+  <Subtitle class="_achievements__title">{content.title}</Subtitle>
+  <p class="_achievements__description">{content.description}</p>
+  <ul class="_achievements__list">
+    {content.items.map((item) => (
+      <li class="_achievements__item">
+        <p class="_achievements__item-value">{item.value}</p>
+        <p class="_achievements__item-desc">{item.description}</p>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style is:global>
+  ._achievements__description {
+    margin: 29px 0 0;
+    padding-right: 20%;
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  ._achievements__list {
+    display: grid;
+    gap: var(--gap);
+    margin-top: 30px;
+    list-style: none;
+  }
+
+  ._achievements__item-value {
+    margin: 0;
+    font-size: 88px;
+    font-weight: 700;
+    line-height: 1em;
+  }
+
+  ._achievements__item-desc {
+    margin: 12px 0 0;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  /* mobile */
+  @media (width < 769px) {
+    ._achievements__description {
+      padding: 0;
+      text-align: center;
+    }
+
+    ._achievements__item {
+      text-align: center;
+    }
+
+    ._achievements__item:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+
+  /* tablet-only */
+  @media (width >= 769px) and (width < 1081px) {
+    ._achievements__list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* desktop */
+  @media (width >= 1081px) {
+    ._achievements__list {
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 70px;
+    }
+  }
+</style>

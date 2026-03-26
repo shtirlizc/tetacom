@@ -1,0 +1,27 @@
+---
+interface Props {
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div";
+  class?: string;
+}
+
+const { as: Tag = "h3", class: className = "" } = Astro.props;
+---
+
+<Tag class:list={["_subtitle", className]}>
+  <slot />
+</Tag>
+
+<style>
+  ._subtitle {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 30px;
+  }
+
+  /* mobile */
+  @media (width < 769px) {
+    ._subtitle {
+      text-align: center;
+    }
+  }
+</style>
