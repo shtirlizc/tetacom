@@ -1,0 +1,12 @@
+---
+import Welcome from "../../components/Welcome.astro";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Tetacom" locale="en">
+  <Welcome
+    locale="en"
+    title="Hello"
+    description="This is the English version of the site. The Russian version stays at the root URL, and the language switcher keeps links locale-aware."
+  />
+</Layout>

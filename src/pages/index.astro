@@ -3,6 +3,10 @@ import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout>
-  <Welcome />
+<Layout title="Tetacom">
+  <Welcome
+    locale="ru"
+    title="Привет"
+    description="Это русская версия сайта. Английская версия доступна по адресу /en/ и через переключатель языка в шапке."
+  />
 </Layout>
