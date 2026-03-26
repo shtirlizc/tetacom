@@ -1,0 +1,88 @@
+---
+interface Props {
+  href?: string;
+  target?: string;
+  rel?: string;
+  type?: "button" | "submit" | "reset";
+  class?: string;
+}
+
+const {
+  href,
+  target,
+  rel,
+  type = "button",
+  class: className = "",
+} = Astro.props;
+
+const Tag = href ? "a" : "button";
+---
+
+<Tag
+  href={href}
+  target={target}
+  rel={rel}
+  type={href ? undefined : type}
+  class:list={["_btn", className]}
+>
+  <slot />
+</Tag>
+
+<style>
+  ._btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 44px;
+    padding: 2px 19px 0;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 5em var(--primary-color);
+    background: none;
+    color: var(--grey-50);
+    cursor: pointer;
+    font-family: var(--font-primary), sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    outline: none;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      box-shadow var(--delay) ease-in-out,
+      color var(--delay) ease-in-out;
+  }
+
+  ._btn:hover {
+    box-shadow: inset 0 0 0 0 var(--primary-color);
+    color: var(--white-color);
+  }
+
+  ._btn:active {
+    transform: translateY(1px);
+  }
+
+  ._btn svg {
+    margin-right: 9px;
+  }
+
+  ._btn svg path {
+    transition: fill var(--delay) ease-in-out;
+  }
+
+  ._btn:hover svg path {
+    fill: var(--white-color);
+  }
+
+  ._btn--block {
+    width: 100%;
+  }
+
+  ._btn--light-bg:hover {
+    color: var(--grey-50);
+  }
+
+  ._btn--light-bg:hover svg path {
+    fill: var(--grey-50);
+  }
+</style>

@@ -1,0 +1,41 @@
+---
+interface Props {
+  locale: "ru" | "en";
+  href?: string;
+}
+
+const { locale, href } = Astro.props;
+const Tag = href ? "a" : "span";
+const flagPath = `${import.meta.env.BASE_URL}img/icons/flag-${locale}.svg`;
+---
+
+<Tag
+  href={href}
+  class:list={["_lang", `_lang--${locale}`]}
+  style={`--lang-flag-image: url("${flagPath}")`}
+>
+  <slot />
+</Tag>
+
+<style>
+  ._lang {
+    display: inline-block;
+    width: 100%;
+    padding: 9px 8px 9px 36px;
+    background-image: var(--lang-flag-image);
+    background-position: 8px 50%;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    color: var(--white-color);
+    font-size: 14px;
+    transition: background-color var(--delay) ease-in-out;
+  }
+
+  ._lang[href]:hover {
+    background-color: #373948;
+  }
+
+  ._lang:not([href]) {
+    cursor: default;
+  }
+</style>

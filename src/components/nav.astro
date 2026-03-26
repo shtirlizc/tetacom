@@ -1,0 +1,94 @@
+---
+import Btn from "./btn.astro";
+
+interface Item {
+  href: string;
+  label: string;
+  target?: string;
+}
+
+interface Props {
+  id?: string;
+  items: Item[];
+  authHref?: string;
+  authLabel?: string;
+}
+
+const { id, items, authHref, authLabel } = Astro.props;
+---
+
+<ul class="_nav" id={id}>
+  {items.map((item) => (
+    <li class="_nav__item">
+      <a href={item.href} target={item.target} class="_nav__link">
+        {item.label}
+      </a>
+    </li>
+  ))}
+
+  {authHref && authLabel && (
+    <li class="_nav__item is-touch">
+      <Btn href={authHref} target="_blank" rel="noopener noreferrer">
+        {authLabel}
+      </Btn>
+    </li>
+  )}
+</ul>
+
+<style>
+  ._nav {
+    list-style: none;
+  }
+
+  ._nav__item {
+    font-size: 0;
+  }
+
+  ._nav__item.active a {
+    color: var(--primary-color);
+  }
+
+  ._nav__link {
+    display: inline-block;
+    padding: 10px 40px;
+    color: var(--white-color);
+    font-size: 14px;
+    white-space: nowrap;
+    transition: color var(--delay) ease-in-out;
+  }
+
+  ._nav__link:hover {
+    color: var(--primary-color);
+  }
+
+  ._nav__item:last-child {
+    margin-top: 20px;
+  }
+
+  /* desktop */
+  @media (width >= 1081px) {
+    ._nav {
+      display: flex;
+      margin-top: 2px;
+    }
+
+    ._nav__item:last-child {
+      margin-top: 0;
+    }
+
+    ._nav__link {
+      padding: 10px 0;
+    }
+
+    ._nav__item:not(:first-child) {
+      margin-left: 36px;
+    }
+  }
+
+  /* widescreen */
+  @media (width >= 1140px) {
+    ._nav__item:not(:first-child) {
+      margin-left: 40px;
+    }
+  }
+</style>
