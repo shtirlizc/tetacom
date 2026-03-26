@@ -157,7 +157,7 @@ const content = dictionary[locale];
   </Container>
 </section>
 
-<style is:global>
+<style>
   ._services {
     padding: 120px 0;
   }
@@ -173,7 +173,7 @@ const content = dictionary[locale];
     text-transform: uppercase;
   }
 
-  ._services__title {
+  :global(._services__title) {
     margin-top: 19px;
     margin-bottom: 63px;
   }

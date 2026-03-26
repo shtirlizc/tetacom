@@ -1,0 +1,490 @@
+---
+import Btn from "../components/btn.astro";
+import Container from "../components/container.astro";
+import { withBase } from "../utils/with-base";
+
+interface Props {
+  locale: "ru" | "en";
+}
+
+const { locale } = Astro.props;
+
+const documents = [
+  {
+    href: withBase(
+      "files/%D0%9B%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B5%20%D1%81%D0%BE%D0%B3%D0%BB%D0%B0%D1%88%D0%B5%D0%BD%D0%B8%D0%B5.pdf",
+    ),
+    labels: {
+      ru: "Лицензионное соглашение",
+      en: "License Agreement",
+    },
+    titles: {
+      ru: "Лицензионное соглашение",
+      en: "License Agreement",
+    },
+  },
+  {
+    href: withBase("files/%D0%9E%D1%84%D0%B5%D1%80%D1%82%D0%B0.pdf"),
+    labels: {
+      ru: "Оферта Симулятора ОПЗ",
+      en: "OPZ Simulator Offer",
+    },
+    titles: {
+      ru: "Оферта Симулятора ОПЗ",
+      en: "OPZ Simulator Offer",
+    },
+  },
+  {
+    href: withBase("files/price-list-SP.pdf"),
+    labels: {
+      ru: "Оферта Программного комплекса",
+      en: "Software Package Offer",
+    },
+    titles: {
+      ru: "Оферта Программного комплекса",
+      en: "Software Package Offer",
+    },
+  },
+  {
+    href: withBase(
+      "files/%D0%A0%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE_%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F_%D0%A1%D0%B8%D0%BC%D1%83%D0%BB%D1%8F%D1%82%D0%BE%D1%80%D0%BE%D0%BC_%D0%9E%D0%9F%D0%97_%D0%A2%D0%B5%D1%82%D0%B0%D0%BA%D0%BE%D0%BC.pdf",
+    ),
+    labels: {
+      ru: "Руководство пользователя Симулятором ОПЗ",
+      en: "OPZ Simulator User Guide",
+    },
+    titles: {
+      ru: "Руководство пользователя Симулятором ОПЗ",
+      en: "OPZ Simulator User Guide",
+    },
+  },
+  {
+    href: withBase("files/guide-SP.pdf"),
+    labels: {
+      ru: "Руководство пользователя Программного комплекса",
+      en: "Software Package User Guide",
+    },
+    titles: {
+      ru: "Руководство пользователя Программного комплекса",
+      en: "Software Package User Guide",
+    },
+  },
+  {
+    href: withBase(
+      "files/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5_%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D1%85_%D1%85%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80%D0%B8%D1%81%D1%82%D0%B8%D0%BA.pdf",
+    ),
+    labels: {
+      ru: "Презентация симулятора КО",
+      en: "Presentation of the RockStim simulator",
+    },
+    titles: {
+      ru: "Презентация симулятора КО",
+      en: "Presentation of the RockStim simulator",
+    },
+  },
+] as const;
+
+const dictionary = {
+  ru: {
+    title: "Наши контакты",
+    phone: "8 (800) 250-02-24",
+    email: "info@tetacom.pro",
+    addressLabel: "Адрес:",
+    address: "Уфа, ул. Карла Маркса, 44, офис 46",
+    innLabel: "ИНН:",
+    inn: "0278939724",
+    kppLabel: "КПП:",
+    kpp: "168301001",
+    ogrnLabel: "ОГРН:",
+    ogrn: "1180280021547",
+    callback: "Написать нам",
+    mapHint: "Тетаком: облачные сервисы для нефтегазовой отрасли",
+    copyrightName: "Тетаком",
+  },
+  en: {
+    title: "Contacts",
+    phone: "8 (800) 250-02-24",
+    email: "info@tetacom.pro",
+    addressLabel: "Address: ",
+    address: "Ufa, st. Karl Marx, 44, office 46",
+    innLabel: "Taxpayer Identification Number (INN):",
+    inn: "0278939724",
+    kppLabel: "Tax Registration Reason Code (KPP):",
+    kpp: "168301001",
+    ogrnLabel: "Primary State Registration Number:",
+    ogrn: "1180280021547",
+    callback: "Write us",
+    mapHint: "Tetacom: cloud services for the oil and gas industry",
+    copyrightName: "Tetacom",
+  },
+} as const;
+
+const content = dictionary[locale];
+const placemarkHref = withBase("img/placemark.svg");
+---
+
+<div class="_contacts" id="contacts">
+  <div class="_contacts__map" id="map"></div>
+
+  <Container>
+    <div class="_contacts__content">
+      <div></div>
+
+      <div class="_contacts__body">
+        <h2 class="_contacts__title">{content.title}</h2>
+        <a href={`tel:${content.phone}`} class="_contacts__phone"
+          >{content.phone}</a
+        >
+        <a href={`mailto:${content.email}`} class="_contacts__email"
+          >{content.email}</a
+        >
+
+        <address class="_contacts__address">
+          <strong>{content.addressLabel}</strong>{content.address}
+        </address>
+
+        <br />
+
+        <p class="_contacts__item">
+          <strong>{content.innLabel}</strong>
+          {content.inn}
+        </p>
+        <p class="_contacts__item">
+          <strong>{content.kppLabel}</strong>
+          {content.kpp}
+        </p>
+        <p class="_contacts__item">
+          <strong>{content.ogrnLabel}</strong>
+          {content.ogrn}
+        </p>
+
+        <div class="_contacts__callback">
+          <Btn
+            href={`mailto:${content.email}`}
+            class="_btn--block _btn--light-bg"
+          >
+            <span>{content.callback}</span>
+          </Btn>
+        </div>
+      </div>
+
+      <div></div>
+    </div>
+  </Container>
+
+  <footer class="_contacts__footer">
+    <Container>
+      <div class="_contacts__footer-links">
+        <p class="_contacts__footer-copyright" id="footer-copyright"></p>
+
+        {
+          documents.map((document) => (
+            <a
+              href={document.href}
+              target="_blank"
+              class="_contacts__footer-link"
+              title={document.titles[locale]}
+            >
+              {document.labels[locale]}
+            </a>
+          ))
+        }
+      </div>
+    </Container>
+  </footer>
+</div>
+
+<script
+  define:vars={{
+    copyrightName: content.copyrightName,
+    mapHint: content.mapHint,
+    placemarkHref,
+  }}
+>
+  const mapsWindow = window;
+  const mapElement = document.getElementById("map");
+  const copyrightElement = document.getElementById("footer-copyright");
+
+  if (copyrightElement) {
+    const today = new Date();
+    copyrightElement.textContent = `© 2018-${today.getFullYear()}, ${copyrightName}`;
+  }
+
+  if (mapElement instanceof HTMLElement) {
+    const loadYandexMaps = () =>
+      new Promise((resolve, reject) => {
+        if ("ymaps" in mapsWindow && mapsWindow.ymaps) {
+          resolve(mapsWindow.ymaps);
+          return;
+        }
+
+        const existingScript = document.querySelector(
+          'script[data-yandex-maps-script="true"]',
+        );
+
+        if (existingScript instanceof HTMLScriptElement) {
+          existingScript.addEventListener(
+            "load",
+            () => resolve(mapsWindow.ymaps),
+            { once: true },
+          );
+          existingScript.addEventListener("error", reject, { once: true });
+          return;
+        }
+
+        const script = document.createElement("script");
+        script.src = "https://api-maps.yandex.ru/2.1/?lang=en_US";
+        script.type = "text/javascript";
+        script.dataset.yandexMapsScript = "true";
+        script.onload = () => resolve(mapsWindow.ymaps);
+        script.onerror = reject;
+
+        document.head.append(script);
+      });
+
+    const initMap = async () => {
+      if (mapElement.dataset.initialized === "true") {
+        return;
+      }
+
+      try {
+        const ymaps = await loadYandexMaps();
+
+        if (!ymaps) {
+          return;
+        }
+
+        ymaps.ready(() => {
+          if (mapElement.dataset.initialized === "true") {
+            return;
+          }
+
+          const myMap = new ymaps.Map(
+            "map",
+            {
+              center: [54.736984, 55.946816],
+              zoom: 17,
+            },
+            {
+              searchControlProvider: "yandex#search",
+            },
+          );
+
+          const myPlacemark = new ymaps.Placemark(
+            myMap.getCenter(),
+            {
+              hintContent: mapHint,
+            },
+            {
+              iconLayout: "default#image",
+              iconImageHref: placemarkHref,
+              iconImageSize: [50, 60],
+              iconImageOffset: [-25, -60],
+            },
+          );
+
+          myMap.behaviors.disable("scrollZoom");
+          myMap.geoObjects.add(myPlacemark);
+          myMap.options.set("suppressMapOpenBlock", true);
+          mapElement.dataset.initialized = "true";
+        });
+      } catch {}
+    };
+
+    initMap();
+  }
+</script>
+
+<style>
+  ._contacts {
+    position: relative;
+    margin-top: 29px;
+    background-color: var(--grey-90);
+  }
+
+  ._contacts__map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateZ(0);
+  }
+
+  :global(
+    ._contacts__map
+      ymaps[class$="-inner-panes"]
+      > ymaps:not(ymaps[class$="-places-pane"])
+  ) {
+    filter: invert(90%) grayscale(100%);
+  }
+
+  :global(._contacts__content) {
+    display: grid;
+    gap: var(--gap);
+    padding: 80px 0 60vh;
+    transform: translateZ(0);
+    pointer-events: none;
+  }
+
+  ._contacts__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    background-color: var(--white-color);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+    pointer-events: auto;
+  }
+
+  ._contacts__title {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 35px;
+  }
+
+  ._contacts__phone {
+    margin-top: 71px;
+    color: var(--grey-50);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 30px;
+  }
+
+  ._contacts__email {
+    margin-top: 8px;
+    color: var(--grey-50);
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  ._contacts__phone,
+  ._contacts__email {
+    border-bottom: 1px solid transparent;
+    transition: border var(--delay) ease-in-out;
+  }
+
+  ._contacts__phone:hover,
+  ._contacts__email:hover {
+    border-bottom-color: var(--grey-50);
+  }
+
+  ._contacts__address {
+    margin-top: 71px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 124.41%;
+  }
+
+  ._contacts__item {
+    margin: 0.5em 0;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 124.41%;
+  }
+
+  ._contacts__callback {
+    align-self: stretch;
+    margin-top: 71px;
+  }
+
+  ._contacts__footer {
+    padding: 41px 0;
+    transform: translateZ(0);
+  }
+
+  ._contacts__footer-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  ._contacts__footer-copyright {
+    margin: 0;
+    overflow: hidden;
+    color: var(--white-color);
+    font-size: 14px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  ._contacts__footer-link {
+    position: relative;
+    overflow: hidden;
+    max-width: 90vw;
+    color: var(--primary-color);
+    font-size: 14px;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  ._contacts__footer-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform calc(1.5 * var(--delay)) ease-in-out;
+  }
+
+  ._contacts__footer-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* mobile */
+  @media (width < 560px) {
+    ._contacts__body {
+      align-items: center;
+      max-width: 300px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    ._contacts__phone {
+      margin-top: 30px;
+    }
+
+    ._contacts__address {
+      margin-top: 30px;
+    }
+
+    ._contacts__callback {
+      margin-top: 30px;
+    }
+  }
+
+  /* tablet-only */
+  @media (width >= 768px) and (width < 1081px) {
+    :global(._contacts__content) {
+      grid-template-columns: 1fr 4fr 6fr;
+      padding: 80px 0 40px;
+    }
+  }
+
+  /* desktop */
+  @media (width >= 1081px) {
+    :global(._contacts__content) {
+      grid-template-columns: 1fr 3fr 8fr;
+      padding: 182px 0 96px;
+    }
+  }
+
+  /* touch */
+  @media (width < 1081px) {
+    ._contacts__footer-links {
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+  }
+</style>

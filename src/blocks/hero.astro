@@ -120,7 +120,7 @@ const subtractPattern = withBase("img/subtract.svg");
   </div>
 </section>
 
-<style is:global>
+<style>
   ._hero {
     position: relative;
     padding-top: var(--header);
@@ -176,7 +176,7 @@ const subtractPattern = withBase("img/subtract.svg");
     line-height: 28px;
   }
 
-  ._hero__callback {
+  :global(._hero__callback) {
     margin-top: 40px;
   }
 
@@ -296,7 +296,7 @@ const subtractPattern = withBase("img/subtract.svg");
       transform: translateZ(0);
     }
 
-    ._hero__callback {
+    :global(._hero__callback) {
       margin-top: 58px;
     }
   }
