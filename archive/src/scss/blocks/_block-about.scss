@@ -1,0 +1,113 @@
+._block-about {
+  background-color: #f7f7f7;
+  padding: 122px 0;
+
+  @include touch {
+    padding: 40px 0;
+  }
+
+  &__title {
+  }
+
+  &__description {
+    font-size: 16px;
+    line-height: 28px;
+    margin: 39px 0 0;
+
+    @include mobile {
+      text-align: center;
+    }
+  }
+
+  &__partners {
+    list-style: none;
+    margin-top: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @include touch {
+      margin-top: 60px;
+    }
+
+    &-item {
+      position: relative;
+      display: flex;
+      min-height: 100px;
+      justify-content: center;
+      align-items: center;
+      flex-basis: 100%;
+      padding-bottom: 25px;
+      margin-bottom: 25px;
+
+      @include tablet-only {
+        flex-basis: 33%;
+        padding: 0;
+        margin-bottom: 30px;
+      }
+
+      @include desktop {
+        flex-basis: 20%;
+        padding: 0;
+        margin-bottom: 50px;
+      }
+
+      &:not(:last-child) {
+        &::after {
+          content: "";
+          position: absolute;
+          width: 1px;
+          height: calc(100% + 10px);
+          top: -5px;
+          right: 0;
+          background-color: var(--grey-80);
+
+          @include mobile {
+            width: 200px;
+            height: 1px;
+            right: 50%;
+            top: auto;
+            bottom: 0;
+            transform: translate(50%);
+          }
+        }
+      }
+
+      &:nth-child(3n) {
+        &::after {
+          @include tablet-only {
+            display: none;
+          }
+        }
+      }
+
+      &:nth-child(5n) {
+        &::after {
+          @include desktop {
+            display: none;
+          }
+        }
+      }
+
+      img {
+        filter: grayscale(100%);
+      }
+    }
+  }
+
+  &__achievements {
+    margin-top: 79px;
+
+    @include touch {
+      margin-top: 40px;
+    }
+  }
+
+  &__team {
+    margin-top: 119px;
+
+    @include touch {
+      margin-top: 60px;
+    }
+  }
+}

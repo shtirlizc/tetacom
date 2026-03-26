@@ -1,0 +1,99 @@
+._block-services {
+  padding: 120px 0;
+
+  @include touch {
+    padding: 40px 0;
+  }
+
+  &__label {
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--grey-30);
+
+    @include mobile {
+      text-align: center;
+    }
+  }
+
+  &__title {
+    margin-top: 19px;
+    margin-bottom: 63px;
+  }
+
+  &__subtitle {
+    font-family: var(--font-secondary);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    margin-top: 0;
+
+    @include mobile {
+      text-align: center;
+    }
+
+    ~ ._block-services__subtitle {
+      margin-top: 100px;
+
+      @include touch {
+        margin-top: 60px;
+      }
+    }
+  }
+
+  &__items {
+    list-style: none;
+    margin-top: 38px;
+
+    @include tablet {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap);
+    }
+  }
+
+  &__item {
+    &:not(:last-child) {
+      @include mobile {
+        margin-bottom: 32px;
+      }
+    }
+
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: var(--primary-color);
+    }
+
+    &-text {
+      font-size: 16px;
+      line-height: 28px;
+      margin: 32px 0 0;
+
+      @include mobile {
+        padding: 0;
+        text-align: center;
+        margin-top: 16px;
+        max-width: 260px;
+      }
+
+      @include desktop {
+        padding-right: 30%;
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+._nav {
+  list-style: none;
+
+  @include touch {
+    padding: 0 10px;
+  }
+
+  @include desktop {
+    display: flex;
+    margin-top: 2px;
+  }
+
+  &__item {
+    font-size: 0;
+
+    &:not(:first-child) {
+      @include desktop {
+        margin-left: 36px;
+      }
+
+      @include widescreen {
+        margin-left: 40px;
+      }
+    }
+
+    &:last-child {
+      @include touch {
+        margin-top: 20px;
+      }
+    }
+
+    &.active {
+      a {
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    font-size: 14px;
+    color: var(--white-color);
+    padding: 10px 0;
+    white-space: nowrap;
+    transition: color var(--delay) ease-in-out;
+
+    @include touch {
+      padding: 10px 40px;
+    }
+
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+}

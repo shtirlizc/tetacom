@@ -1,0 +1,35 @@
+@import 'vendors';
+
+@import 'mixins/common';
+@import 'fonts';
+@import 'variables';
+@import 'body';
+@import 'container';
+@import 'swiper';
+
+// components
+@import 'components/btn';
+@import 'components/feedback';
+@import 'components/form';
+@import 'components/input';
+@import 'components/modal';
+@import 'components/success';
+@import 'components/list';
+@import 'components/lang';
+@import 'components/dropdown';
+@import 'components/header';
+@import 'components/nav';
+@import 'components/title';
+@import 'components/subtitle';
+@import 'components/contacts';
+@import 'components/text-content';
+
+// blocks
+@import 'blocks/block-head';
+@import 'blocks/block-services';
+@import 'blocks/block-about';
+@import 'blocks/achievements';
+@import 'blocks/team';
+@import 'blocks/block-products';
+@import 'blocks/block-reviews';
+@import 'blocks/block-tech-stack';
