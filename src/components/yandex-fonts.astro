@@ -1,0 +1,50 @@
+---
+import { withBase } from "../utils/with-base";
+
+const lightSrc = `url("${withBase("fonts/YandexSans/YandexSansText-Light.woff2")}") format("woff2"), url("${withBase("fonts/YandexSans/YandexSansText-Light.woff")}") format("woff")`;
+const regularSrc = `url("${withBase("fonts/YandexSans/YandexSansText-Regular.woff2")}") format("woff2"), url("${withBase("fonts/YandexSans/YandexSansText-Regular.woff")}") format("woff")`;
+const mediumSrc = `url("${withBase("fonts/YandexSans/YandexSansText-Medium.woff2")}") format("woff2"), url("${withBase("fonts/YandexSans/YandexSansText-Medium.woff")}") format("woff")`;
+const boldSrc = `url("${withBase("fonts/YandexSans/YandexSansText-Bold.woff2")}") format("woff2"), url("${withBase("fonts/YandexSans/YandexSansText-Bold.woff")}") format("woff")`;
+---
+
+<style
+  is:global
+  define:vars={{
+    lightSrc,
+    regularSrc,
+    mediumSrc,
+    boldSrc,
+  }}
+>
+  @font-face {
+    font-family: "YandexSans";
+    src: var(--lightSrc);
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "YandexSans";
+    src: var(--regularSrc);
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "YandexSans";
+    src: var(--mediumSrc);
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "YandexSans";
+    src: var(--boldSrc);
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+  }
+</style>
