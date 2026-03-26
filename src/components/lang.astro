@@ -1,4 +1,6 @@
 ---
+import { withBase } from "../utils/with-base";
+
 interface Props {
   locale: "ru" | "en";
   href?: string;
@@ -6,7 +8,7 @@ interface Props {
 
 const { locale, href } = Astro.props;
 const Tag = href ? "a" : "span";
-const flagPath = `${import.meta.env.BASE_URL}img/icons/flag-${locale}.svg`;
+const flagPath = withBase(`img/icons/flag-${locale}.svg`);
 ---
 
 <Tag

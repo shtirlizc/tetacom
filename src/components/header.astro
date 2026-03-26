@@ -5,6 +5,7 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import Lang from "./lang.astro";
 import List from "./list.astro";
 import Nav from "./nav.astro";
+import { withBase } from "../utils/with-base";
 
 interface Props {
   locale: "ru" | "en";
@@ -15,8 +16,8 @@ const { locale } = Astro.props;
 const homeHref = getRelativeLocaleUrl(locale, "");
 const switchHref = getRelativeLocaleUrl(locale === "ru" ? "en" : "ru", "");
 const authHref = "https://opz.tetacom.pro/login";
-const priceHref = `${import.meta.env.BASE_URL}files/%D0%9E%D1%84%D0%B5%D1%80%D1%82%D0%B0.pdf`;
-const currentFlagPath = `${import.meta.env.BASE_URL}img/icons/flag-${locale}.svg`;
+const priceHref = withBase("files/%D0%9E%D1%84%D0%B5%D1%80%D1%82%D0%B0.pdf");
+const currentFlagPath = withBase(`img/icons/flag-${locale}.svg`);
 
 const dictionary = {
   ru: {

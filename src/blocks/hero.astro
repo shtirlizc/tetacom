@@ -1,6 +1,7 @@
 ---
 import Btn from "../components/btn.astro";
 import Container from "../components/container.astro";
+import { withBase } from "../utils/with-base";
 
 interface Props {
   locale: "ru" | "en";
@@ -50,8 +51,8 @@ const dictionary = {
 } as const;
 
 const content = dictionary[locale];
-const bgPattern = `${import.meta.env.BASE_URL}img/bg.svg`;
-const subtractPattern = `${import.meta.env.BASE_URL}img/subtract.svg`;
+const bgPattern = withBase("img/bg.svg");
+const subtractPattern = withBase("img/subtract.svg");
 ---
 
 <section
@@ -64,8 +65,8 @@ const subtractPattern = `${import.meta.env.BASE_URL}img/subtract.svg`;
       <div class="swiper-wrapper">
         {
           content.slides.map((slide, index) => {
-            const image1x = `${import.meta.env.BASE_URL}img/${slide.image}.png`;
-            const image2x = `${import.meta.env.BASE_URL}img/${slide.image}@2x.png`;
+            const image1x = withBase(`img/${slide.image}.png`);
+            const image2x = withBase(`img/${slide.image}@2x.png`);
 
             return (
               <div class="swiper-slide">
