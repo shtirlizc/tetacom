@@ -15,7 +15,6 @@
     "@fontsource-variable/open-sans": "^5.2.7",
     "astro": "^6.1.1",
     "gumshoejs": "^5.1.2",
-    "imask": "^7.6.1",
     "normalize.css": "^8.0.1",
     "swiper": "^12.1.3"
   },

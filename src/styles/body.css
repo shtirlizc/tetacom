@@ -55,13 +55,6 @@ a {
 }
 
 /* tablet */
-@media (width < 769px) {
-  .is-touch {
-    display: none;
-  }
-}
-
-/* tablet */
 @media (width >= 769px) {
   .is-mobile {
     display: none;
