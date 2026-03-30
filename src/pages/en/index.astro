@@ -7,14 +7,16 @@ import Reviews from "../../blocks/reviews.astro";
 import Services from "../../blocks/services.astro";
 import TechStack from "../../blocks/tech-stack.astro";
 import Layout from "../../layouts/Layout.astro";
+
+const locale = "en" as const;
 ---
 
-<Layout title="Tetacom" locale="en">
-  <Hero locale="en" />
-  <Services locale="en" />
-  <About locale="en" />
-  <Products locale="en" />
-  <TechStack locale="en" />
-  <Reviews locale="en" />
-  <Contacts locale="en" />
+<Layout locale={locale}>
+  <Hero locale={locale} />
+  <Services locale={locale} />
+  <About locale={locale} />
+  <Products locale={locale} />
+  <TechStack locale={locale} />
+  <Reviews locale={locale} />
+  <Contacts locale={locale} />
 </Layout>

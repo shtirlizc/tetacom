@@ -10,25 +10,107 @@ interface Props {
 }
 
 const {
-  title = "Tetacom",
+  title,
   locale = (Astro.currentLocale ?? "ru") as "ru" | "en",
 } = Astro.props;
+
+const metadata = {
+  ru: {
+    title: "Тетаком: облачные сервисы для нефтегазовой отрасли",
+    description:
+      "Облачные решения компании Тетаком для нефтегазовой промышленности позволяют снижать себестоимость добычи природных энергоресурсов",
+    ogLocale: "ru_RU",
+  },
+  en: {
+    title: "Tetacom: cloud services for the oil and gas industry",
+    description:
+      "Tetacom cloud solutions for the oil and gas industry help reduce the cost of production of natural energy resources",
+    ogLocale: "en_US",
+  },
+} as const;
+
+const content = metadata[locale];
+const pageTitle = title ?? content.title;
+const canonicalUrl = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).toString()
+  : Astro.url.toString();
+const posterUrl = Astro.site
+  ? new URL(withBase("img/poster.jpg"), Astro.site).toString()
+  : withBase("img/poster.jpg");
 ---
 
 <!doctype html>
 <html lang={locale}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <YandexFonts />
+    <title>{pageTitle}</title>
+
+    <meta name="theme-color" content="#262835" />
+    <meta name="description" content={content.description} />
+
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:image" content={posterUrl} />
+    <meta property="og:description" content={content.description} />
+    <meta property="og:site_name" content="Tetacom" />
+    <meta property="og:locale" content={content.ogLocale} />
+
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={content.description} />
+    <meta name="twitter:image" content={posterUrl} />
+
     <link
-      rel="icon"
-      type="image/svg+xml"
-      href={withBase("favicon.svg")}
+      rel="shortcut icon"
+      href={withBase("img/iconified/favicon.ico")}
+      type="image/x-icon"
     />
-    <link rel="icon" href={withBase("favicon.ico")} />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <link rel="apple-touch-icon" href={withBase("img/iconified/apple-touch-icon.png")} />
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href={withBase("img/iconified/apple-touch-icon-57x57.png")}
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href={withBase("img/iconified/apple-touch-icon-72x72.png")}
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href={withBase("img/iconified/apple-touch-icon-76x76.png")}
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href={withBase("img/iconified/apple-touch-icon-114x114.png")}
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href={withBase("img/iconified/apple-touch-icon-120x120.png")}
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href={withBase("img/iconified/apple-touch-icon-144x144.png")}
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href={withBase("img/iconified/apple-touch-icon-152x152.png")}
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href={withBase("img/iconified/apple-touch-icon-180x180.png")}
+    />
   </head>
   <body>
     <Header locale={locale} />
