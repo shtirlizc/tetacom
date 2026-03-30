@@ -348,15 +348,71 @@ const navItems = [
 </style>
 
 <script>
+  import Gumshoe from "gumshoejs";
+
   const header = document.getElementById("site-header");
+  const toggleBtn = document.querySelector("._header__menu-toggle");
+  const bg = document.querySelector("._header__nav-bg");
+  const nav = document.querySelector("._header__nav");
+  const html = document.documentElement;
+  const gumshoeNavigation = document.querySelector("#gumshoe-navigation");
 
   if (header instanceof HTMLElement) {
+    if (gumshoeNavigation instanceof HTMLElement) {
+      new Gumshoe("#gumshoe-navigation a");
+    }
+
     const addActiveState = () => {
       header.classList.add("active");
     };
 
     const removeActiveState = () => {
       header.classList.remove("active");
+    };
+
+    const openMenu = () => {
+      if (
+        !(bg instanceof HTMLElement) ||
+        !(nav instanceof HTMLElement) ||
+        !(toggleBtn instanceof HTMLElement)
+      ) {
+        return;
+      }
+
+      bg.classList.add("active");
+
+      window.setTimeout(() => {
+        bg.classList.add("visible");
+        nav.classList.add("active");
+        header.classList.add("active");
+        html.classList.add("modal");
+      }, 50);
+
+      sessionStorage.setItem("side_menu", "true");
+    };
+
+    const closeMenu = () => {
+      if (
+        !(bg instanceof HTMLElement) ||
+        !(nav instanceof HTMLElement) ||
+        !(toggleBtn instanceof HTMLElement)
+      ) {
+        return;
+      }
+
+      bg.classList.remove("visible");
+      nav.classList.remove("active");
+      html.classList.remove("modal");
+
+      if (!window.pageYOffset) {
+        header.classList.remove("active");
+      }
+
+      window.setTimeout(() => {
+        bg.classList.remove("active");
+      }, 250);
+
+      sessionStorage.setItem("side_menu", "false");
     };
 
     if (window.pageYOffset) {
@@ -373,5 +429,31 @@ const navItems = [
         removeActiveState();
       }
     });
+
+    if (toggleBtn instanceof HTMLButtonElement) {
+      toggleBtn.addEventListener("click", (event) => {
+        const currentTarget = event.currentTarget;
+
+        if (!(currentTarget instanceof HTMLButtonElement)) {
+          return;
+        }
+
+        if (currentTarget.classList.contains("active")) {
+          currentTarget.classList.remove("active");
+          closeMenu();
+          return;
+        }
+
+        currentTarget.classList.add("active");
+        openMenu();
+      });
+    }
+
+    if (bg instanceof HTMLElement && toggleBtn instanceof HTMLElement) {
+      bg.addEventListener("click", () => {
+        toggleBtn.classList.remove("active");
+        closeMenu();
+      });
+    }
   }
 </script>

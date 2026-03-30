@@ -130,6 +130,7 @@ const subtractPattern = withBase("img/subtract.svg");
     background-repeat: repeat;
     background-size: 60px 62px;
     color: var(--white-color);
+    overflow: hidden;
   }
 
   ._hero__slider .swiper-slide {
@@ -351,7 +352,10 @@ const subtractPattern = withBase("img/subtract.svg");
   const sliderElement = document.getElementById("hero-slider");
   const paginationElement = document.getElementById("hero-pagination");
 
-  if (sliderElement instanceof HTMLElement && paginationElement instanceof HTMLElement) {
+  if (
+    sliderElement instanceof HTMLElement &&
+    paginationElement instanceof HTMLElement
+  ) {
     const buttons = paginationElement.querySelectorAll("button[data-slide]");
 
     const updatePagination = (activeIndex) => {
