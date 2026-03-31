@@ -162,12 +162,27 @@ const langList = "lang-list";
     width: 100%;
     height: var(--header);
     padding: 16px calc(var(--gap) / 2);
-    transition: all var(--delay) ease-in-out;
+    background-color: var(--bg-color);
+
+    @supports ((animation-timeline: scroll()) and (animation-range: 0 100px)) {
+      background-color: transparent;
+      animation: header-bg 1s linear;
+      animation-timeline: scroll(root block);
+      animation-range: 0 100px;
+      animation-fill-mode: both;
+    }
   }
 
-  ._header.active {
-    background-color: var(--bg-color);
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+  @keyframes header-bg {
+    from {
+      background-color: transparent;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0);
+    }
+
+    to {
+      background-color: var(--bg-color);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+    }
   }
 
   ._header__logo {
@@ -265,7 +280,7 @@ const langList = "lang-list";
 
   ._header__lang-value {
     color: var(--white-color);
-    font-family: var(--font-primary);
+    font-family: var(--font-primary), sans-serif;
     font-size: 14px;
     text-transform: uppercase;
   }
@@ -372,14 +387,6 @@ const langList = "lang-list";
       new Gumshoe("#gumshoe-navigation a");
     }
 
-    const addActiveState = () => {
-      header.classList.add("active");
-    };
-
-    const removeActiveState = () => {
-      header.classList.remove("active");
-    };
-
     const openMenu = () => {
       if (
         !(bg instanceof HTMLElement) ||
@@ -424,21 +431,6 @@ const langList = "lang-list";
 
       sessionStorage.setItem("side_menu", "false");
     };
-
-    if (window.pageYOffset) {
-      addActiveState();
-    }
-
-    document.addEventListener("scroll", () => {
-      if (window.pageYOffset) {
-        addActiveState();
-      } else if (
-        sessionStorage.getItem("side_menu") !== "true" ||
-        window.innerWidth > 1080
-      ) {
-        removeActiveState();
-      }
-    });
 
     if (toggleBtn instanceof HTMLButtonElement) {
       toggleBtn.addEventListener("click", (event) => {
