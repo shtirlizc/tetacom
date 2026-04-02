@@ -1,6 +1,9 @@
 ---
 import Btn from "../components/btn.astro";
 import Container from "../components/container.astro";
+import { Image } from "astro:assets";
+import slide1Image from "../assets/hero/slide-1@2x.png";
+import slide2Image from "../assets/hero/slide-2@2x.png";
 import { withBase } from "../utils/with-base";
 
 interface Props {
@@ -8,6 +11,10 @@ interface Props {
 }
 
 const { locale } = Astro.props;
+const slideImages = {
+  "slide-1": slide1Image,
+  "slide-2": slide2Image,
+} as const;
 
 const dictionary = {
   ru: {
@@ -65,8 +72,7 @@ const subtractPattern = withBase("img/subtract.svg");
       <div class="swiper-wrapper">
         {
           content.slides.map((slide, index) => {
-            const image1x = withBase(`img/${slide.image}.png`);
-            const image2x = withBase(`img/${slide.image}@2x.png`);
+            const image = slideImages[slide.image];
 
             return (
               <div class="swiper-slide">
@@ -87,11 +93,12 @@ const subtractPattern = withBase("img/subtract.svg");
                       </Btn>
                     </div>
                     <div class="_hero__slider-item">
-                      <img
-                        src={image1x}
-                        srcset={`${image1x} 1x, ${image2x} 2x`}
+                      <Image
+                        src={image}
                         alt={slide.imageAlt}
-                        loading={index === 0 ? undefined : "lazy"}
+                        loading={index === 0 ? "eager" : "lazy"}
+                        widths={[image.width]}
+                        sizes="(min-width: 1081px) 50vw, 100vw"
                       />
                     </div>
                   </div>
@@ -157,6 +164,7 @@ const subtractPattern = withBase("img/subtract.svg");
   ._hero__slider-item img {
     max-width: 100%;
     max-height: calc(100% - 20px);
+    height: auto;
     object-fit: contain;
     transition: all var(--delay) ease-in-out;
   }

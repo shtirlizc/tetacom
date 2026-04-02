@@ -1,24 +1,30 @@
 ---
 import Container from "../components/container.astro";
 import Title from "../components/title.astro";
-import { withBase } from "../utils/with-base";
+import { Image } from "astro:assets";
+import reviewOpz1Image from "../assets/reviews/review-opz-1.jpg";
+import reviewOpz2Image from "../assets/reviews/review-opz-2.jpg";
 
 interface Props {
   locale: "ru" | "en";
 }
 
 const { locale } = Astro.props;
+const reviewImages = {
+  "review-opz-1": reviewOpz1Image,
+  "review-opz-2": reviewOpz2Image,
+} as const;
 
 const dictionary = {
   ru: {
     title: "Отзывы",
     items: [
       {
-        href: withBase("img/reviews/review-opz-1.jpg"),
+        image: "review-opz-1",
         alt: "Отзыв клиента о продукте ОПЗ",
       },
       {
-        href: withBase("img/reviews/review-opz-2.jpg"),
+        image: "review-opz-2",
         alt: "Отзыв клиента о продукте ОПЗ",
       },
     ],
@@ -27,11 +33,11 @@ const dictionary = {
     title: "Reviews",
     items: [
       {
-        href: withBase("img/reviews/review-opz-1.jpg"),
+        image: "review-opz-1",
         alt: "Customer review of the HMO product",
       },
       {
-        href: withBase("img/reviews/review-opz-2.jpg"),
+        image: "review-opz-2",
         alt: "Customer review of the HMO product",
       },
     ],
@@ -45,17 +51,21 @@ const content = dictionary[locale];
   <Container>
     <Title>{content.title}</Title>
     <div class="_reviews__body" id="reviews-gallery">
-      {content.items.map((item, index) => (
-        <div class="_reviews__item">
-          <a
-            data-fslightbox="gallery"
-            href={item.href}
-            id={`reviews-gallery-item-${index + 1}`}
-          >
-            <img src={item.href} alt={item.alt} />
-          </a>
-        </div>
-      ))}
+      {content.items.map((item, index) => {
+        const image = reviewImages[item.image];
+
+        return (
+          <div class="_reviews__item">
+            <a
+              data-fslightbox="gallery"
+              href={image.src}
+              id={`reviews-gallery-item-${index + 1}`}
+            >
+              <Image src={image} alt={item.alt} widths={[image.width]} />
+            </a>
+          </div>
+        );
+      })}
     </div>
   </Container>
 </section>

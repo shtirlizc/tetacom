@@ -1,5 +1,6 @@
 ---
-import { withBase } from "../utils/with-base";
+import FlagEn from "../assets/icons/flag-en.svg";
+import FlagRu from "../assets/icons/flag-ru.svg";
 
 interface Props {
   locale: "ru" | "en";
@@ -8,29 +9,47 @@ interface Props {
 
 const { locale, href } = Astro.props;
 const Tag = href ? "a" : "span";
-const flagPath = withBase(`img/icons/flag-${locale}.svg`);
+const Flag = locale === "ru" ? FlagRu : FlagEn;
 ---
 
-<Tag
-  href={href}
-  class:list={["_lang", `_lang--${locale}`]}
-  style={`--lang-flag-image: url("${flagPath}")`}
->
-  <slot />
+<Tag href={href} class:list={["_lang", `_lang--${locale}`]}>
+  <span class="_lang__flag" aria-hidden="true">
+    <Flag />
+  </span>
+  <span class="_lang__label">
+    <slot />
+  </span>
 </Tag>
 
 <style>
   ._lang {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     width: 100%;
-    padding: 9px 8px 9px 36px;
-    background-image: var(--lang-flag-image);
-    background-position: 8px 50%;
-    background-repeat: no-repeat;
-    background-size: 20px 20px;
+    padding: 9px 8px;
     color: var(--white-color);
     font-size: 14px;
     transition: background-color var(--delay) ease-in-out;
+  }
+
+  ._lang__flag {
+    display: block;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border-radius: 50%;
+  }
+
+  ._lang__flag :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  ._lang__label {
+    min-width: 0;
   }
 
   ._lang[href]:hover {

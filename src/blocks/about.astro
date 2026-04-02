@@ -3,18 +3,25 @@ import Achievements from "./achievements.astro";
 import Container from "../components/container.astro";
 import Team from "./team.astro";
 import Title from "../components/title.astro";
-import { withBase } from "../utils/with-base";
+import { Image } from "astro:assets";
+import agniImage from "../assets/partners/agni@2x.png";
+import bashnipineftImage from "../assets/partners/bashnipineft@2x.png";
+import kfuImage from "../assets/partners/kfu@2x.png";
+import tatneftImage from "../assets/partners/tatneft@2x.png";
+import ugntuImage from "../assets/partners/ugntu@2x.png";
 
 interface Props {
   locale: "ru" | "en";
 }
 
 const { locale } = Astro.props;
-
-const partnerImage = (name: string) => ({
-  src: withBase(`img/partners/${name}.png`),
-  srcset: `${withBase(`img/partners/${name}.png`)} 1x, ${withBase(`img/partners/${name}@2x.png`)} 2x`,
-});
+const partnerImages = {
+  agni: agniImage,
+  bashnipineft: bashnipineftImage,
+  kfu: kfuImage,
+  tatneft: tatneftImage,
+  ugntu: ugntuImage,
+} as const;
 
 const partners = [
   {
@@ -72,13 +79,12 @@ const content = dictionary[locale];
 
     <ul class="_about__partners">
       {partners.map((partner) => {
-        const image = partnerImage(partner.image);
+        const image = partnerImages[partner.image];
 
         return (
           <li class="_about__partners-item">
-            <img
-              src={image.src}
-              srcset={image.srcset}
+            <Image
+              src={image}
               width={partner.width}
               height={partner.height}
               alt={partner.alt}

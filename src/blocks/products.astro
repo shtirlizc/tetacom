@@ -1,20 +1,20 @@
 ---
 import Container from "../components/container.astro";
 import Title from "../components/title.astro";
-import { withBase } from "../utils/with-base";
+import { Image } from "astro:assets";
+import fractalImage from "../assets/products/fractal@2x.png";
+import innovationAssistanceFundImage from "../assets/products/innovation-assistance-fund@2x.png";
+import opzImage from "../assets/products/opz@2x.png";
 
 interface Props {
   locale: "ru" | "en";
 }
 
 const { locale } = Astro.props;
-
-const productImage = (name: string) => ({
-  src: withBase(`img/products/${name}.png`),
-  srcset: `${withBase(`img/products/${name}.png`)} 1x, ${withBase(`img/products/${name}@2x.png`)} 2x`,
-});
-
-const sponsorImage = productImage("innovation-assistance-fund");
+const productImages = {
+  fractal: fractalImage,
+  opz: opzImage,
+} as const;
 
 const dictionary = {
   ru: {
@@ -145,44 +145,41 @@ const content = dictionary[locale];
   <Container>
     <Title class="_products__title">{content.title}</Title>
     <div class="_products__items">
-      {content.items.map((item) => {
-        const image = productImage(item.image);
+      {
+        content.items.map((item) => {
+          const image = productImages[item.image];
 
-        return (
-          <article class="_products__item">
-            <div class="_products__item-content">
-              <h3 class="_products__item-title" set:html={item.title}></h3>
-              <ul class="_products__item-features">
-                {item.features.map((feature) => (
-                  <li class="_products__item-feature" set:html={feature}></li>
-                ))}
-              </ul>
-              <a
-                href="https://fasie.ru/"
-                target="_blank"
-                rel="noreferrer"
-                class="_products__item-sponsor"
-              >
-                <img
-                  src={sponsorImage.src}
-                  srcset={sponsorImage.srcset}
-                  alt=""
-                  width="155"
-                  height="87"
-                />
-                <span set:html={content.sponsorText}></span>
-              </a>
-            </div>
-            <div class="_products__item-picture">
-              <img
-                src={image.src}
-                srcset={image.srcset}
-                alt={item.imageAlt}
-              />
-            </div>
-          </article>
-        );
-      })}
+          return (
+            <article class="_products__item">
+              <div class="_products__item-content">
+                <h3 class="_products__item-title" set:html={item.title} />
+                <ul class="_products__item-features">
+                  {item.features.map((feature) => (
+                    <li class="_products__item-feature" set:html={feature} />
+                  ))}
+                </ul>
+                <a
+                  href="https://fasie.ru/"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="_products__item-sponsor"
+                >
+                  <Image
+                    src={innovationAssistanceFundImage}
+                    alt=""
+                    width="155"
+                    height="87"
+                  />
+                  <span set:html={content.sponsorText} />
+                </a>
+              </div>
+              <div class="_products__item-picture">
+                <Image src={image} alt={item.imageAlt} widths={[image.width]} />
+              </div>
+            </article>
+          );
+        })
+      }
     </div>
   </Container>
 </section>
@@ -237,6 +234,7 @@ const content = dictionary[locale];
   ._products__item-picture img {
     max-width: calc(100% + 112px);
     max-height: 100%;
+    height: auto;
   }
 
   ._products__item-sponsor {
