@@ -14,7 +14,7 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
     "@fontsource-variable/open-sans": "^5.2.7",
-    "astro": "^6.1.1",
+    "astro": "^6.1.7",
     "gumshoejs": "^5.1.2",
     "normalize.css": "^8.0.1",
     "swiper": "^12.1.3"
